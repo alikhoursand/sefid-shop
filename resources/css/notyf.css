@@ -1,0 +1,33 @@
+.notyf__icon {
+    margin-right: 0 !important;
+    margin-left: 13px;
+}
+
+.notyf__wrapper {
+    padding-right: 0 !important;
+}
+
+.notyf__toast--success {
+    color: oklch(100% 0 0) !important;
+
+}
+
+.notyf__icon--success {
+    background: oklch(100% 0 0) !important;
+    color: oklch(76% 0.177 163.223) !important;
+}
+
+.notyf__toast--success .notyf__ripple {
+    background: oklch(76% 0.177 163.223) !important;
+}
+
+.notyf__toast {
+    border-radius: 1rem !important;
+    font-weight: 500;
+}
+
+@media only screen and (max-width: 480px) {
+    .notyf {
+        padding: .5rem !important;
+    }
+}
