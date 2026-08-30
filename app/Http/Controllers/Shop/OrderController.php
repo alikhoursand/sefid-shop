@@ -32,7 +32,7 @@ class OrderController extends Controller
         $cart_items = Cart::where('user_id', Auth::id())->get();
 
         if ($cart_items->isEmpty()) {
-            return redirect()->route('shop.cart.index')->with('warning', 'سبد خرید شما خالی است');
+            return redirect()->route('shop.cart.index')->with('error', 'سبد خرید شما خالی است');
         }
 
         $validated = CartHelper::validate($cart_items);

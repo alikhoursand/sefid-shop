@@ -4,11 +4,7 @@
 
     <div class="mb-8 flex items-center justify-start gap-x-2">
         <a href="{{ route('admin.shop.product.create') }}" class="btn btn-success">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
-                <path fill-rule="evenodd"
-                    d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 9a.75.75 0 0 0-1.5 0v2.25H9a.75.75 0 0 0 0 1.5h2.25V15a.75.75 0 0 0 1.5 0v-2.25H15a.75.75 0 0 0 0-1.5h-2.25V9Z"
-                    clip-rule="evenodd" />
-            </svg>
+            <x-heroicon-s-plus-circle class="size-6" />
             ثبت محصول جدید
         </a>
     </div>
@@ -127,28 +123,15 @@
 
                         </td>
                         <td class="text-center min-w-[100px]">
-                            <a href="{{ route('admin.shop.product.edit', $product->id) }}"
-                                class="btn btn-warning btn-sm btn-circle">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                    class="size-5">
-                                    <path
-                                        d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32L19.513 8.2Z" />
-                                </svg>
+                            <a href="{{ route('admin.shop.product.edit', $product->id) }}" class="btn btn-warning btn-sm">
+                                <x-heroicon-s-pencil-square class="size-4" />
+                                ویرایش
                             </a>
-                            <button onclick="qty_modal.showModal()" class="btn btn-secondary btn-sm btn-circle mr-1 qty-btn"
+                            <button onclick="qty_modal.showModal()" class="btn btn-secondary btn-sm mr-1 qty-btn"
                                 data-name="{{ $product->title }}" data-id="{{ $product->id }}"
                                 data-qty="{{ $product->qty }}">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                    class="size-5">
-                                    <path
-                                        d="M21 6.375c0 2.692-4.03 4.875-9 4.875S3 9.067 3 6.375 7.03 1.5 12 1.5s9 2.183 9 4.875Z" />
-                                    <path
-                                        d="M12 12.75c2.685 0 5.19-.586 7.078-1.609a8.283 8.283 0 0 0 1.897-1.384c.016.121.025.244.025.368C21 12.817 16.97 15 12 15s-9-2.183-9-4.875c0-.124.009-.247.025-.368a8.285 8.285 0 0 0 1.897 1.384C6.809 12.164 9.315 12.75 12 12.75Z" />
-                                    <path
-                                        d="M12 16.5c2.685 0 5.19-.586 7.078-1.609a8.282 8.282 0 0 0 1.897-1.384c.016.121.025.244.025.368 0 2.692-4.03 4.875-9 4.875s-9-2.183-9-4.875c0-.124.009-.247.025-.368a8.284 8.284 0 0 0 1.897 1.384C6.809 15.914 9.315 16.5 12 16.5Z" />
-                                    <path
-                                        d="M12 20.25c2.685 0 5.19-.586 7.078-1.609a8.282 8.282 0 0 0 1.897-1.384c.016.121.025.244.025.368 0 2.692-4.03 4.875-9 4.875s-9-2.183-9-4.875c0-.124.009-.247.025-.368a8.284 8.284 0 0 0 1.897 1.384C6.809 19.664 9.315 20.25 12 20.25Z" />
-                                </svg>
+                                <x-heroicon-s-cube class="size-4" />
+                                موجودی
                             </button>
 
                             <form action="{{ route('admin.shop.product.qty', $product->id) }}" method="post"
@@ -174,23 +157,7 @@
         <div class="modal-box bg-base-300">
             <form method="dialog">
                 <button class="btn btn-sm btn-circle btn-ghost absolute left-2 top-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none">
-                        <g clip-path="url(#clip0_4418_9821wc)">
-                            <path d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
-                                stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                            <path d="M9.17004 14.8299L14.83 9.16992" stroke="currentColor" stroke-width="1.5"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M14.83 14.8299L9.17004 9.16992" stroke="currentColor" stroke-width="1.5"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                        </g>
-                        <defs>
-                            <clipPath id="clip0_4418_9821wc">
-                                <rect width="24" height="24" fill="white" />
-                            </clipPath>
-                        </defs>
-                    </svg>
+                    <x-heroicon-o-x-mark class="size-4" />
                 </button>
             </form>
             <h3 class="text-lg font-bold">تغییر موجودی محصول</h3>
@@ -204,19 +171,11 @@
 
             <div class="flex justify-center gap-x-4 mt-8 items-center">
                 <button class="btn btn-success" id="add_qty">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                        stroke="currentColor" class="size-5">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                    </svg>
+                    <x-heroicon-s-plus-circle class="size-6" />
                     افزایش
                 </button>
                 <button class="btn btn-error" id="sub_qty">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                        stroke="currentColor" class="size-5">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M15 12H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                    </svg>
+                    <x-heroicon-s-minus-circle class="size-6" />
                     کاهش
                 </button>
             </div>

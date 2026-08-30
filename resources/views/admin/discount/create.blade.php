@@ -18,11 +18,7 @@
                 <div class="xl:basis-1/4 lg:basis-1/3 md:basis-2/3 w-full p-2 relative">
                     <button type="button"
                         class="random-value z-10 absolute bottom-5.5 left-4 btn btn-xs btn-square btn-primary">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
-                            <path fill-rule="evenodd"
-                                d="M4.755 10.059a7.5 7.5 0 0 1 12.548-3.364l1.903 1.903h-3.183a.75.75 0 1 0 0 1.5h4.992a.75.75 0 0 0 .75-.75V4.356a.75.75 0 0 0-1.5 0v3.18l-1.9-1.9A9 9 0 0 0 3.306 9.67a.75.75 0 1 0 1.45.388Zm15.408 3.352a.75.75 0 0 0-.919.53 7.5 7.5 0 0 1-12.548 3.364l-1.902-1.903h3.183a.75.75 0 0 0 0-1.5H2.984a.75.75 0 0 0-.75.75v4.992a.75.75 0 0 0 1.5 0v-3.18l1.9 1.9a9 9 0 0 0 15.059-4.035.75.75 0 0 0-.53-.918Z"
-                                clip-rule="evenodd" />
-                        </svg>
+                        <x-heroicon-s-arrow-path class="size-4" />
                     </button>
                     <label for="title" class="block text-sm mb-2"> کد
                         تخفیف</label>
@@ -38,7 +34,7 @@
                 <div class="xl:basis-1/4 lg:basis-1/3 md:basis-2/3 w-full p-2">
                     <label for="type" class="block text-sm mb-2">نوع
                         تخفیف</label>
-                    <select id="type" name="type" class="select focus:outline-none w-full">
+                    <select id="type" name="type" class="select focus:outline-none outline-0 w-full">
                         <option selected value="1">مبلغ ثابت</option>
                         <option value="2">درصدی</option>
 
@@ -88,3 +84,18 @@
         </form>
     </div>
 @endsection
+
+
+@push('footer_js')
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            jalaliDatepicker.startWatch({
+                persianDigits: true,
+                showTodayBtn: false,
+                showEmptyBtn: false,
+                hideAfterChange: false,
+                showCloseBtn: true,
+            });
+        })
+    </script>
+@endpush

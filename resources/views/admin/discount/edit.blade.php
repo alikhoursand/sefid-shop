@@ -20,12 +20,8 @@
 
                 <div class="xl:basis-1/4 lg:basis-1/3 md:basis-2/3 w-full p-2 relative">
                     <button type="button"
-                        class="random-value z-10 absolute bottom-4 left-4 btn btn-sm btn-circle btn-primary">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                            stroke="currentColor" class="size-5">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
-                        </svg>
+                        class="random-value z-10 absolute bottom-5.5 left-4 btn btn-xs btn-square btn-primary">
+                        <x-heroicon-s-arrow-path class="size-4" />
 
                     </button>
                     <label for="title" class="block mb-2"> کد
@@ -88,13 +84,24 @@
             </div>
 
 
-            <button class="btn btn-success mt-10">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                    stroke="currentColor" class="size-5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                </svg>
+            <button class="btn btn-warning mt-10">
                 ویرایش کد تخفیف
             </button>
         </form>
     </div>
 @endsection
+
+
+@push('footer_js')
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            jalaliDatepicker.startWatch({
+                persianDigits: true,
+                showTodayBtn: false,
+                showEmptyBtn: false,
+                hideAfterChange: false,
+                showCloseBtn: true,
+            });
+        })
+    </script>
+@endpush

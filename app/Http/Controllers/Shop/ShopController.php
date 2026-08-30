@@ -20,7 +20,6 @@ class ShopController extends Controller
         ];
 
 
-
         if ($request->title) {
             $params[] = ['title', 'like', '%' . $request->title . '%'];
         }
@@ -115,14 +114,14 @@ class ShopController extends Controller
 
         $products = $products->paginate(16)->appends(request()->query());
 
-        return view('user.shop.product-list', compact('products', ));
+        return view('user.shop.product-list', compact('products'));
     }
 
     public function offers(Request $request)
     {
         $params = [
             ['status', 1],
-            ['off_price','!=',0]
+            ['off_price', '!=', 0]
         ];
 
 
@@ -164,9 +163,9 @@ class ShopController extends Controller
             $offers = $offers->whereBetween('price', [$min, $request->max_price]);
         }
 
-        $offers = $offers->paginate(16);
+        $offers = $offers->paginate(16)->appends($request->query());
 
-        return view('user.shop.offers', compact('offers'))->appends(request()->query());
+        return view('user.shop.offers', compact('offers'));
     }
 
     public function categories()

@@ -129,13 +129,7 @@
     <section class="hidden sm:block  max-w-screen-xl mt-2 mx-auto p-2">
         <div class="flex justify-between items-center">
             <a href="{{ route('shop.cart.index') }}" class="btn btn-wide">
-                <svg xmlns="http://www.w3.org/2000/svg" class="size-4" width="24" height="24"
-                     viewBox="0 0 24 24" fill="none">
-                    <path
-                        d="M8.90991 19.9201L15.4299 13.4001C16.1999 12.6301 16.1999 11.3701 15.4299 10.6001L8.90991 4.08008"
-                        stroke="currentColor" stroke-width="3" stroke-miterlimit="10" stroke-linecap="round"
-                        stroke-linejoin="round"/>
-                </svg>
+                <x-heroicon-c-chevron-right class="size-5"/>
                 <span>بررسی سبد خرید</span>
             </a>
 

@@ -4,11 +4,7 @@
 
     <div class="mb-4 flex items-center justify-start gap-x-2">
         <button onclick="new_category.showModal()" class="btn btn-success">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
-                <path fill-rule="evenodd"
-                    d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 9a.75.75 0 0 0-1.5 0v2.25H9a.75.75 0 0 0 0 1.5h2.25V15a.75.75 0 0 0 1.5 0v-2.25H15a.75.75 0 0 0 0-1.5h-2.25V9Z"
-                    clip-rule="evenodd" />
-            </svg>
+            <x-heroicon-s-plus-circle class="size-6" />
             ثبت دسته‌بندی جدید
         </button>
 
@@ -78,17 +74,12 @@
 
                         </td>
 
-                        <td class="text-right">
+                        <td class="text-center">
                             <button
                                 onclick="setModalUID('{{ route('admin.shop.category.update', $category->slug) }}','{{ $category->title }}','{{ $category->parent_id }}','{{ Storage::url($category->image) }}')"
-                                class="btn btn-warning btn-sm btn-circle">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                    class="size-5">
-                                    <path
-                                        d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
-                                    <path
-                                        d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
-                                </svg>
+                                class="btn btn-warning btn-sm">
+                                <x-heroicon-s-pencil-square class="size-4" />
+                                ویرایش
                             </button>
 
                         </td>
@@ -135,22 +126,7 @@
         <div class="modal-box bg-base-300">
             <form method="dialog">
                 <button class="btn btn-sm btn-circle btn-ghost absolute left-2 top-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none">
-                        <g clip-path="url(#clip0_4418_9821ce)">
-                            <path d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
-                                stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M9.17004 14.8299L14.83 9.16992" stroke="#fff" stroke-width="1.5"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M14.83 14.8299L9.17004 9.16992" stroke="#fff" stroke-width="1.5"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                        </g>
-                        <defs>
-                            <clipPath id="clip0_4418_9821ce">
-                                <rect width="24" height="24" fill="currentColor" />
-                            </clipPath>
-                        </defs>
-                    </svg>
+                    <x-heroicon-s-x-mark class="size-5" />
                 </button>
             </form>
             <h3 class="text-lg font-bold">ویرایش دسته بندی</h3>
@@ -162,7 +138,7 @@
                     <div>
                         <label class="text-sm" for="edit_title">نام دسته بندی</label>
                         <input type="text" name="title" id="edit_title"
-                            class="input w-full max-w-[350px] block mt-2 focus:outline-none" />
+                            class="input w-full block mt-2 focus:outline-none" />
                         @if (session('action') == 'edit')
                             @error('title')
                                 {{ $message }}
@@ -171,8 +147,8 @@
                     </div>
                     <div class="mt-4">
                         <label class="text-sm" for="edit_parent_id">زیر مجموعه</label>
-                        <select class="select w-full max-w-[350px] block mt-2 focus:outline-none" name="parent_id"
-                            id="edit_parent_id">
+                        <select class="select p-3 w-full block mt-2 outline-0 focus:outline-none active:outline-none"
+                            name="parent_id" id="edit_parent_id">
                             <option selected value="">دسته بندی را انتخاب کنید</option>
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->title }}</option>
@@ -181,8 +157,8 @@
                     </div>
                     <div class="mt-4">
                         <label class="text-sm" for="edit_image">عکس</label>
-                        <input name="image" class="file-input w-full max-w-[350px] block mt-2 focus:outline-none"
-                            id="edit_image" type="file">
+                        <input name="image" class="file-input w-full block mt-2 focus:outline-none" id="edit_image"
+                            type="file">
                         <div class="error text-xs md:text-sm text-error mt-1">
                             @if (session('action') == 'edit')
                                 @error('image')
@@ -207,22 +183,7 @@
         <div class="modal-box bg-base-300">
             <form method="dialog">
                 <button class="btn btn-sm btn-circle btn-ghost absolute left-2 top-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none">
-                        <g clip-path="url(#clip0_4418_9821cc)">
-                            <path d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
-                                stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M9.17004 14.8299L14.83 9.16992" stroke="#fff" stroke-width="1.5"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M14.83 14.8299L9.17004 9.16992" stroke="#fff" stroke-width="1.5"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                        </g>
-                        <defs>
-                            <clipPath id="clip0_4418_9821cc">
-                                <rect width="24" height="24" fill="currentColor" />
-                            </clipPath>
-                        </defs>
-                    </svg>
+                    <x-heroicon-s-x-mark class="size-5" />
                 </button>
             </form>
             <h3 class="text-lg font-bold">ثبت دسته بندی جدید</h3>
@@ -233,7 +194,7 @@
                     <div>
                         <label for="title" class="text-sm">نام دسته بندی</label>
                         <input type="text" name="title" id="title" value="{{ old('title') }}"
-                            class="input  w-full max-w-[350px] block mt-2 focus:outline-none" />
+                            class="input  w-full block mt-2 focus:outline-none" />
                         <div class="error text-xs md:text-sm text-error mt-1">
                             @if (session('action') == 'create')
                                 @error('title')
@@ -244,7 +205,7 @@
                     </div>
                     <div class="mt-4">
                         <label for="parent_id" class="text-sm">زیر مجموعه</label>
-                        <select class="select w-full max-w-[350px] block mt-2 focus:outline-none" name="parent_id"
+                        <select class="select w-full outline-0 p-3 block mt-2 focus:outline-none" name="parent_id"
                             id="parent_id">
                             <option disabled selected value="">دسته بندی را انتخاب کنید</option>
                             @foreach ($categories as $category)
@@ -256,8 +217,8 @@
 
                     <div class="mt-4">
                         <label for="image" class="text-sm">عکس</label>
-                        <input name="image" class="file-input w-full max-w-[350px] block mt-2 focus:outline-none"
-                            id="image" type="file">
+                        <input name="image" class="file-input w-full block mt-2 focus:outline-none" id="image"
+                            type="file">
                         <div class="error text-xs md:text-sm text-error mt-1">
                             @if (session('action') == 'create')
                                 @error('image')
