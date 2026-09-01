@@ -10,7 +10,7 @@
     </div>
 
     <div class="mb-4">
-        <form action="{{ route('admin.shop.discount.search') }}" method="get">
+        <form action="{{ route('admin.shop.discount.index') }}" method="get">
             <div class="flex items-end flex-wrap gap-4">
                 <div class="w-[250px]">
                     <label for="code" class="text-sm block mb-2">کد</label>

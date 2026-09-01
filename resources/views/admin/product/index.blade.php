@@ -9,7 +9,7 @@
         </a>
     </div>
     <div class="mb-4">
-        <form action="{{ route('admin.shop.product.search') }}" method="get">
+        <form action="{{ route('admin.shop.product.index') }}" method="get">
             <div class="flex items-end flex-wrap gap-4">
                 <div class="w-[250px]">
                     <label for="title" class="text-sm block mb-2">نام/کد/شناسه محصول</label>

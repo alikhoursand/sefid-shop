@@ -5,7 +5,6 @@ use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\Shop\CategoryController;
 use App\Http\Controllers\Shop\DiscountController;
 use App\Http\Controllers\Shop\ProductController;
-use App\Http\Controllers\User\MessageController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Middleware\Admin;
 use Illuminate\Support\Facades\Route;
@@ -26,7 +25,6 @@ Route::prefix('admin')->middleware(Admin::class)->group(function () {
 
     Route::prefix('transactions')->group(function () {
         Route::get('/list', [AdminController::class, 'adminTransactions'])->name('admin.transactions');
-        Route::get('/search', [AdminController::class, 'adminTransactionsSearch'])->name('admin.transactions.search');
     });
 
     Route::prefix('banners')->group(function () {
@@ -45,16 +43,8 @@ Route::prefix('admin')->middleware(Admin::class)->group(function () {
 
     Route::get('dashboard', [AdminController::class, 'adminPanel'])->name('admin.panel');
 
-    Route::prefix('messages')->group(function () {
-        Route::get('/list', [MessageController::class, 'index'])->name('admin.message.list');
-        Route::post('/store', [MessageController::class, 'store'])->name('admin.message.store');
-        Route::delete('/delete/{message}', [MessageController::class, 'delete'])->name('admin.message.delete');
-    });
-
     Route::prefix('users')->group(function () {
-        Route::get('/users-search', [UserController::class, 'usersSearch'])->name('admin.user.search');
         Route::get('/users-list', [UserController::class, 'usersList'])->name('admin.user.list');
-        Route::get('/admins-search', [UserController::class, 'adminsSearch'])->name('admin.user.admin.search');
         Route::get('/admins-list', [UserController::class, 'adminsList'])->name('admin.user.admin.list');
         Route::put('/change-status/{user}', [UserController::class, 'changeStatus'])->name('admin.user.change-status');
         Route::put('/change-role/{user}', [UserController::class, 'changeRole'])->name('admin.user.change-role');
@@ -70,7 +60,6 @@ Route::prefix('admin')->middleware(Admin::class)->group(function () {
 
         Route::prefix('product')->group(function () {
             Route::get('/list', [ProductController::class, 'index'])->name('admin.shop.product.index');
-            Route::get('/search', [ProductController::class, 'search'])->name('admin.shop.product.search');
             Route::get('/create', [ProductController::class, 'create'])->name('admin.shop.product.create');
             Route::post('/store', [ProductController::class, 'store'])->name('admin.shop.product.store');
             Route::get('/edit/{product}', [ProductController::class, 'edit'])->name('admin.shop.product.edit');
@@ -85,7 +74,6 @@ Route::prefix('admin')->middleware(Admin::class)->group(function () {
 
         Route::prefix('discount')->middleware(Admin::class)->group(function () {
             Route::get('index', [DiscountController::class, 'index'])->name('admin.shop.discount.index');
-            Route::get('search', [DiscountController::class, 'search'])->name('admin.shop.discount.search');
             Route::get('create', [DiscountController::class, 'create'])->name('admin.shop.discount.create');
             Route::post('store', [DiscountController::class, 'store'])->name('admin.shop.discount.store');
             Route::get('edit/{discount}', [DiscountController::class, 'edit'])->name('admin.shop.discount.edit');

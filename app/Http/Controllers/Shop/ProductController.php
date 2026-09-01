@@ -11,25 +11,21 @@ use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
-    public function index()
-    {
-        $products = Product::orderBy('id', 'desc')->paginate(16);
-
-        return view('admin.product.index', compact('products'));
-    }
-
-    public function search(Request $request)
+    public function index(Request $request)
     {
         $query = Product::query();
 
         if ($request->filled('title')) {
-            $query->where('title', 'like', '%'.$request->title.'%')->orWhere('id', $request->title)->orWhere('code', $request->title);
+            $query->where(function ($q) use ($request) {
+                $q->where('title', 'like', '%'.$request->title.'%')
+                    ->orWhere('id', $request->title)
+                    ->orWhere('code', $request->title);
+            });
         }
 
         $products = $query->orderBy('id', 'desc')->paginate(16);
 
         return view('admin.product.index', compact('products'));
-
     }
 
     public function create()

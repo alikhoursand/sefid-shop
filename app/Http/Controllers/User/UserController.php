@@ -163,41 +163,7 @@ class UserController extends Controller
         }
     }
 
-    public function adminsList()
-    {
-        $admins = User::where('role', 2)->orderBy('id', 'desc')->paginate(16);
-
-        return view('admin.user.adminsList', compact('admins'));
-    }
-
-    public function usersList()
-    {
-        $users = User::where('role', 1)->orderBy('id', 'desc')->paginate(16);
-
-        return view('admin.user.usersList', compact('users'));
-    }
-
-    public function usersSearch(Request $request)
-    {
-        $query = User::query();
-
-        $query->where('role', 1);
-
-        if ($request->filled('name')) {
-            $query->where('fname', 'like', '%'.$request->name.'%');
-            $query->orWhere('lname', 'like', '%'.$request->name.'%');
-        }
-
-        if ($request->filled('phone')) {
-            $query->where('phone', 'like', '%'.$request->phone.'%');
-        }
-
-        $users = $query->paginate(16);
-
-        return view('admin.user.usersList', compact('users'));
-    }
-
-    public function adminsSearch(Request $request)
+    public function adminsList(Request $request)
     {
         $query = User::query();
 
@@ -215,5 +181,25 @@ class UserController extends Controller
         $admins = $query->paginate(16);
 
         return view('admin.user.adminsList', compact('admins'));
+    }
+
+    public function usersList(Request $request)
+    {
+        $query = User::query();
+
+        $query->where('role', 1);
+
+        if ($request->filled('name')) {
+            $query->where('fname', 'like', '%'.$request->name.'%');
+            $query->orWhere('lname', 'like', '%'.$request->name.'%');
+        }
+
+        if ($request->filled('phone')) {
+            $query->where('phone', 'like', '%'.$request->phone.'%');
+        }
+
+        $users = $query->paginate(16);
+
+        return view('admin.user.usersList', compact('users'));
     }
 }

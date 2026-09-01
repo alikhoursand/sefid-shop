@@ -10,16 +10,13 @@ use Illuminate\Support\Facades\Validator;
 
 class DiscountController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $discounts = Discount::orderBy('id', 'desc')->paginate(16);
-
-        return view('admin.discount.index', compact('discounts'));
-    }
-
-    public function search(Request $request)
-    {
-        $discounts = Discount::where('code', 'like', '%'.$request->code.'%')->orderBy('id', 'desc')->paginate(16);
+        if ($request->has('code')) {
+            $discounts = Discount::where('code', 'like', '%'.$request->code.'%')->orderBy('id', 'desc')->paginate(16);
+        } else {
+            $discounts = Discount::orderBy('id', 'desc')->paginate(16);
+        }
 
         return view('admin.discount.index', compact('discounts'));
     }

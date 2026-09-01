@@ -3,7 +3,7 @@
     <x-admin.page-title :page_title="'لیست کاربران'"></x-admin.page-title>
 
     <div class="mb-4">
-        <form action="{{ route('admin.user.search') }}" method="get">
+        <form action="{{ route('admin.user.list') }}" method="get">
             <div class="flex items-end flex-wrap gap-4">
                 <div class="w-[250px]">
                     <label for="name" class="text-sm block mb-2">نام کاربر</label>

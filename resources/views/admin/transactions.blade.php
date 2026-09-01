@@ -8,7 +8,7 @@
     </p>
 
     <div class="p-4 px-0">
-        <form action="{{ route('admin.transactions.search') }}" method="get">
+        <form action="{{ route('admin.transactions') }}" method="get">
             <div class="flex items-end flex-wrap gap-4">
                 <div class="w-[350px]">
                     <label for="id" class="text-sm block mb-2">شماره تراکنش / کد تراکنش / کد رهگیری / شماره

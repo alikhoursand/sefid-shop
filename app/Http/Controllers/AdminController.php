@@ -123,13 +123,6 @@ class AdminController extends Controller
 
     public function adminTransactions(Request $request)
     {
-        $transactions = Transaction::orderBy('id', 'desc')->paginate(16);
-
-        return view('admin.transactions', compact('transactions'));
-    }
-
-    public function adminTransactionsSearch(Request $request)
-    {
         $transactions = Transaction::where('id', $request->id)
             ->orWhere('order_id', 'like', '%'.$request->id.'%')
             ->orWhere('code', 'like', '%'.$request->id.'%')
