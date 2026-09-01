@@ -23,7 +23,7 @@
 
     <div class="relative overflow-x-auto rounded-box bg-base-100">
         <table class="w-full text-xs sm:text-sm text-left rtl:text-right">
-            <thead class=" bg-base-200">
+            <thead class="text-xs sm:text-sm border-b-2 border-base-300 bg-base-100">
                 <tr>
                     <th scope="col" class="p-4 w-[100px] text-center ">
                         #
@@ -47,7 +47,7 @@
             </thead>
             <tbody class="divide-y-2">
                 @foreach ($admins as $admin)
-                    <tr class="border-base-300 hover:bg-base-content/10">
+                    <tr class="border-base-200 hover:bg-base-200 duration-200">
                         <th scope="row" class="min-w-[50px] text-center  font-medium whitespace-nowrap ">
                             {{ $admin->id }}
                         </th>

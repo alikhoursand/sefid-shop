@@ -23,11 +23,10 @@
             </div>
         </div>
 
-        <div class="grow overflow-y-auto">
+        <div class="grow min-h-full h-full overflow-y-auto">
             @include('components.admin.navbar')
-            <div class=" bg-base-200 lg:rounded-box lg:ml-2 h-full">
-
-                <div class="p-2 sm:p-4 ">
+            <div class=" bg-base-200 lg:rounded-box lg:ml-2 ">
+                <div class="p-2 sm:p-4 h-full">
                     @yield('content')
                 </div>
             </div>
