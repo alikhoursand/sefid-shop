@@ -26,7 +26,8 @@
         <div class="grow min-h-full h-full overflow-y-auto">
             @include('components.admin.navbar')
             <div class=" bg-base-200 lg:rounded-box lg:ml-2 ">
-                <div class="p-2 sm:p-4 h-full">
+
+                <div class="p-2 sm:p-4">
                     @yield('content')
                 </div>
             </div>
