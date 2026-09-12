@@ -85,7 +85,10 @@
                                 onsubmit="return confirm('بنر حذف شود؟')">
                                 @method('DELETE')
                                 @csrf
-                                <button class="btn btn-error btn-sm">حذف</button>
+                                <button class="btn btn-error btn-sm">
+                                    <x-heroicon-o-trash class="size-4" />
+                                    حذف
+                                </button>
                             </form>
 
 

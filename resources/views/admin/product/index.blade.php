@@ -165,7 +165,7 @@
             <p class="py-4 text-sm">موجودی فعلی: <span id="selected_qty" class="text-primary"></span></p>
             <div class="max-w-[150px] mx-auto">
                 <label for="qty" class="block text-center">تعداد</label>
-                <input type="number" value="0" id="qty"
+                <input type="number" min="0" value="0" id="qty"
                     class="mx-auto text-center input w-full focus:outline-none">
             </div>
 
