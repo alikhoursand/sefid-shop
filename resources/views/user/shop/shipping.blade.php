@@ -17,11 +17,11 @@
                             <div class="col-span-2 sm:col-span-1">
                                 <label for="first_name" class="block mb-2 text-sm font-medium">نام</label>
                                 <input type="text" id="first_name" name="fname"
-                                       value="{{ old('fname') ? old('fname') : $address['address']['fname'] ?? '' }}"
-                                       class="input focus:outline-none focus:shadow-none w-full" required/>
+                                    value="{{ old('fname') ? old('fname') : $address['address']['fname'] ?? '' }}"
+                                    class="input focus:outline-none focus:shadow-none w-full" required />
                                 <span id="first_name_error" class="shipping-error text-sm text-error">
                                     @error('fname')
-                                    {{ $message }}
+                                        {{ $message }}
                                     @enderror
                                     &nbsp;
                                 </span>
@@ -30,11 +30,11 @@
                                 <label for="last_name" class="block mb-2 text-sm font-medium">نام
                                     خانوادگی</label>
                                 <input type="text" id="last_name" name="lname"
-                                       value="{{ old('lname') ? old('lname') : $address['address']['lname'] ?? '' }}"
-                                       class="input focus:outline-none focus:shadow-none w-full " required/>
+                                    value="{{ old('lname') ? old('lname') : $address['address']['lname'] ?? '' }}"
+                                    class="input focus:outline-none focus:shadow-none w-full " required />
                                 <span id="last_name_error" class="shipping-error text-sm text-error">
                                     @error('lname')
-                                    {{ $message }}
+                                        {{ $message }}
                                     @enderror
                                     &nbsp;
                                 </span>
@@ -42,10 +42,10 @@
                             <div class="col-span-2 sm:col-span-1">
                                 <label for="sphone" class="block mb-2 text-sm font-medium">موبایل</label>
                                 <input disabled readonly value="{{ auth()->user()->phone ?? '' }}" type="number"
-                                       id="sphone" class="input focus:outline-none focus:shadow-none w-full " required/>
+                                    id="sphone" class="input focus:outline-none focus:shadow-none w-full " required />
                                 <span id="phone_error" class="shipping-error text-sm text-error">
                                     @error('phone')
-                                    {{ $message }}
+                                        {{ $message }}
                                     @enderror
                                     &nbsp;
                                 </span>
@@ -54,11 +54,11 @@
                                 <label for="postal_code" class="block mb-2 text-sm font-medium">کد
                                     پستی</label>
                                 <input type="number" id="postal_code" name="postal_code"
-                                       value="{{ old('postal_code') ? old('postal_code') : $address['address']['postal_code'] ?? '' }}"
-                                       class="input focus:outline-none focus:shadow-none w-full no-arrows" required/>
+                                    value="{{ old('postal_code') ? old('postal_code') : $address['address']['postal_code'] ?? '' }}"
+                                    class="input focus:outline-none focus:shadow-none w-full no-arrows" required />
                                 <span id="postal_code_error" class="shipping-error text-sm text-error">
                                     @error('postal_code')
-                                    {{ $message }}
+                                        {{ $message }}
                                     @enderror
                                     &nbsp;
                                 </span>
@@ -66,7 +66,7 @@
                             <div class="col-span-2 sm:col-span-1">
                                 <label for="state" class="block mb-2 text-sm font-medium">استان</label>
                                 <select id="order_state" name="state_id"
-                                        class="input focus:outline-none focus:shadow-none w-full ">
+                                    class="input focus:outline-none focus:shadow-none w-full ">
                                     <option {{ old('state_id') ? '' : 'selected' }} value="">انتخاب کنید</option>
                                     @foreach ($states as $state)
                                         <option
@@ -76,7 +76,7 @@
                                 </select>
                                 <span id="state_error" class="shipping-error text-sm text-error">
                                     @error('state_id')
-                                    {{ $message }}
+                                        {{ $message }}
                                     @enderror
                                     &nbsp;
                                 </span>
@@ -84,12 +84,12 @@
                             <div class="col-span-2 sm:col-span-1">
                                 <label for="city" class="block mb-2 text-sm font-medium">شهر</label>
                                 <select id="order_city" name="city_id" disabled
-                                        class="input focus:outline-none focus:shadow-none w-full ">
+                                    class="input focus:outline-none focus:shadow-none w-full ">
                                     <option selected value="">ابتدا استان را انتخاب کنید</option>
                                 </select>
                                 <span id="city_error" class="shipping-error text-sm text-error">
                                     @error('city_id')
-                                    {{ $message }}
+                                        {{ $message }}
                                     @enderror
                                     &nbsp;
                                 </span>
@@ -97,10 +97,10 @@
                             <div class="col-span-2">
                                 <label for="address" class="block mb-2   text-sm font-medium">آدرس</label>
                                 <textarea id="address" rows="4" name="address"
-                                          class="textarea focus:outline-none focus:shadow-none min-h-16 max-h-32 w-full ">{{ old('address') ? old('address') : $address['address']['address'] ?? '' }}</textarea>
+                                    class="textarea focus:outline-none focus:shadow-none min-h-16 max-h-32 w-full ">{{ old('address') ? old('address') : $address['address']['address'] ?? '' }}</textarea>
                                 <span id="address_error" class="shipping-error text-sm text-error">
                                     @error('address')
-                                    {{ $message }}
+                                        {{ $message }}
                                     @enderror
                                     &nbsp;
                                 </span>
@@ -112,13 +112,15 @@
                 </div>
             </div>
             <div class="col-span-12 lg:col-span-4 ">
-                <x-shop.cart-details
-                    :method="'js'"
-                    :discount="$discount"
-                    :next_step="['text' => 'نهایی سازی سفارش', 'function' => 'sendInfo()', 'arrow' => true]"
-                    :show="['total_price','discount_form','post_cost','payable_amount','products_discount','real_discount']"
-                    :cart_details="$cart_details"
-                ></x-shop.cart-details>
+                <x-shop.cart-details :method="'js'" :step="2" :discount="$discount" :next_step="['text' => 'نهایی سازی سفارش', 'function' => 'sendInfo()', 'arrow' => true]"
+                    :show="[
+                        'total_price',
+                        'discount_form',
+                        'post_cost',
+                        'payable_amount',
+                        'products_discount',
+                        'real_discount',
+                    ]" :cart_details="$cart_details"></x-shop.cart-details>
 
             </div>
 
@@ -129,7 +131,7 @@
     <section class="hidden sm:block  max-w-screen-xl mt-2 mx-auto p-2">
         <div class="flex justify-between items-center">
             <a href="{{ route('shop.cart.index') }}" class="btn btn-wide">
-                <x-heroicon-c-chevron-right class="size-5"/>
+                <x-heroicon-c-chevron-right class="size-5" />
                 <span>بررسی سبد خرید</span>
             </a>
 

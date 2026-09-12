@@ -3,6 +3,7 @@
     'show' => [],
     'method' => '',
     'next_step' => '',
+    'step' => 1,
     'discount' => null,
     'previous_step' => '',
 ])
@@ -94,9 +95,17 @@
 
             <div class="divider my-0"></div>
             <div class="flex items-center justify-between">
-                <div class="opacity-75">جمع سبد خرید:</div>
+                <div class="opacity-75">
+                    @if ($step == 2)
+                        جمع قابل پرداخت:
+                    @elseif($step == 3)
+                        مبلغ نهایی قابل پرداخت:
+                    @else
+                        جمع سبد خرید:
+                    @endif
+                </div>
                 <div class="font-medium">
-                    <span>{{ number_format($cart_details['payable_amount'] - $cart_details['real_discount']) }}</span>
+                    <span>{{ number_format($cart_details['payable_amount'] - $cart_details['real_discount'] + $cart_details['post_cost'] + $cart_details['tax_amount']) }}</span>
                     <span class="text-sm">تومان</span>
                 </div>
             </div>
