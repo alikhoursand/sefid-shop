@@ -13,24 +13,29 @@
                     <div class="grid grid-cols-12 gap-4">
                         <div class="col-span-12 lg:col-start-4 lg:col-end-13 text-left">
                             <div class="flex items-center justify-between">
-                                <button class="btn btn-primary btn-sm sm:btn-md" onclick="mobile_filters.showModal()">
-                                    <x-heroicon-s-funnel class="size-4 inline" />
-                                    فیلتر ها
-                                </button>
-                                <button class="btn btn-sm sm:btn-md" popovertarget="popover-1"
-                                    style="anchor-name:--anchor-1">
-                                    <x-heroicon-s-arrows-up-down class="size-4 inline" />
-                                    ترتیب نمایش
-                                </button>
-                                <ul class="dropdown menu w-52 space-y-1 rounded-box bg-base-100 shadow-sm" popover
-                                    id="popover-1" style="position-anchor:--anchor-1">
-                                    <li><a class="{{ request()->input('sort') == 'newest' ? 'bg-primary font-medium text-primary-content' : '' }}"
-                                            onclick="setSortParam('newest')">جدیدترین</a></li>
-                                    <li><a class="{{ request()->input('sort') == 'lowest_price' ? 'bg-primary font-medium text-primary-content' : '' }}"
-                                            onclick="setSortParam('lowest_price')">ارزان‌ترین</a></li>
-                                    <li><a class="{{ request()->input('sort') == 'highest_price' ? 'bg-primary font-medium text-primary-content' : '' }}"
-                                            onclick="setSortParam('highest_price')">گران‌ترین</a></li>
-                                </ul>
+                                <div>
+                                    <button class="btn flex lg:hidden btn-primary btn-sm sm:btn-md"
+                                        onclick="mobile_filters.showModal()">
+                                        <x-heroicon-s-funnel class="size-4 inline" />
+                                        فیلتر ها
+                                    </button>
+                                </div>
+                                <div>
+                                    <button class="btn btn-sm sm:btn-md" popovertarget="popover-1"
+                                        style="anchor-name:--anchor-1">
+                                        <x-heroicon-s-arrows-up-down class="size-4 inline" />
+                                        ترتیب نمایش
+                                    </button>
+                                    <ul class="dropdown menu w-52 space-y-1 rounded-box bg-base-100 shadow-sm" popover
+                                        id="popover-1" style="position-anchor:--anchor-1">
+                                        <li><a class="{{ request()->input('sort') == 'newest' ? 'bg-primary font-medium text-primary-content' : '' }}"
+                                                onclick="setSortParam('newest')">جدیدترین</a></li>
+                                        <li><a class="{{ request()->input('sort') == 'lowest_price' ? 'bg-primary font-medium text-primary-content' : '' }}"
+                                                onclick="setSortParam('lowest_price')">ارزان‌ترین</a></li>
+                                        <li><a class="{{ request()->input('sort') == 'highest_price' ? 'bg-primary font-medium text-primary-content' : '' }}"
+                                                onclick="setSortParam('highest_price')">گران‌ترین</a></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
