@@ -137,14 +137,10 @@ class AdminController extends Controller
 
     public function adminOrders(Request $request)
     {
-        $orders = Order::orderBy('id', 'desc')->paginate(16);
-
-        return view('admin.orders', compact('orders'));
-    }
-
-    public function adminOrdersSearch(Request $request)
-    {
-        $orders = Order::where('id', $request->id)->orderBy('id', 'desc')->paginate(16);
+        $orders = Order::when($request->filled('id'), function ($q) use ($request) {
+            $q->where('id', 'like', '%'.$request->id.'%');
+        })
+            ->orderBy('id', 'desc')->paginate(16);
 
         return view('admin.orders', compact('orders'));
     }

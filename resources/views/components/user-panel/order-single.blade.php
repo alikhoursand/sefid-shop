@@ -41,7 +41,7 @@
             @if ($order->paid_at)
                 <div class="basis-1/2 p-2 flex flex-col md:flex-row gap-2">
                     <span class="opacity-75">تاریخ پرداخت:</span>
-                    <span class="font-medium">{{ verta($order->paid_at)->format('%d %B %Y') }}</span>
+                    <span class="font-medium">{{ verta($order->paid_at)->format('%d %B %Y - H:i:s') }}</span>
                 </div>
             @else
                 <div class="basis-1/2 flex flex-col md:flex-row gap-2"></div>
@@ -71,67 +71,89 @@
                 </div>
             </div>
 
-            <div class="basis-full">
-                <div class="overflow-x-auto rounded-box divide-y-2 bg-base-100 shadow-md shadow-base-300">
-                    @foreach ($order->items as $item)
-                        <div
-                            class="p-2 sm:px-4 sm:p-4 border-base-100 bg-base-300 flex flex-col md:flex-row items-start md:items-center justify-between">
-                            <div class="basis-2/6">{{ $item->product->title }}</div>
-                            <div class="my-2 basis-1/6 text-center"><span
-                                    class="font-bold text-primary">{{ $item->qty }}</span>
-                                عدد
+            <div class="basis-full ">
+                <div class="overflow-x-auto bg-base-100 border-2 border-base-300 rounded-box">
+                    <div class="p-2 sm:p-4 border-b-2 border-base-300 font-semibold">
+                        <x-heroicon-s-cube class="size-5 sm:size-6 inline text-primary" />
+                        محصولات سبد خرید
+                    </div>
+                    <div class="divide-y-2">
+                        @foreach ($order->items as $item)
+                            <div
+                                class="p-2 sm:px-4 sm:p-4 border-dashed border-base-300 flex flex-col md:flex-row items-start md:items-center justify-between">
+                                <div class="basis-2/6">{{ $item->product->title }}</div>
+                                <div class="my-2 basis-1/6 text-center">
+                                    <span class="font-bold text-primary">{{ $item->qty }}</span>
+                                    عدد
+                                </div>
+                                <div class="basis-2/6 text-left">
+                                    <span class="font-medium">{{ number_format($item->price) }}</span>
+                                    تومان
+                                </div>
                             </div>
-                            <div class="basis-2/6 text-left"><span
-                                    class="font-medium">{{ number_format($item->price) }}</span>
+                        @endforeach
+                        <div class="p-2 sm:p-4 text-left">مجموع: <span
+                                class="font-bold text-primary">{{ number_format($order->items->sum('price')) }}</span>
+                            تومان</div>
+                    </div>
+                </div>
+
+                <div class="mt-4 overflow-x-auto rounded-box bg-base-100 border-2 border-base-300">
+                    <div class="p-2 sm:p-4 border-b-2 border-base-300 font-semibold">
+                        <x-heroicon-s-calculator class="size-5 sm:size-6 inline text-secondary" />
+                        جزییات
+                        تراکنش
+                    </div>
+                    <div class="p-2 sm:px-4 mt-2">
+                        <div class="flex items-center justify-between gap-x-2">
+                            <div class=" ">جمع سبد خرید</div>
+                            <div class="divider my-2 before:bg-base-300 after:bg-base-300 grow"></div>
+                            <div class="text-left ">{{ number_format($order->items->sum('price')) }}
                                 تومان
                             </div>
                         </div>
-                    @endforeach
-                    <div class="p-2 sm:px-4 mt-2">
+
+                        @if ($order->post)
+                            <div class="flex items-center justify-between gap-x-2">
+                                <div class=" ">هزینه ارسال</div>
+                                <div class="divider my-2 before:bg-base-300 after:bg-base-300 grow"></div>
+                                <div class="text-left ">{{ number_format($order->post) }}
+                                    تومان
+                                </div>
+                            </div>
+                        @endif
+
+                        @if ($order->tax)
+                            <div class="flex items-center justify-between gap-x-2">
+                                <div class=" ">مالیات</div>
+                                <div class="divider my-2 before:bg-base-300 after:bg-base-300 grow"></div>
+                                <div class="text-left ">{{ number_format($order->tax) }}
+                                    تومان
+                                </div>
+                            </div>
+                        @endif
+
+                        @if ($order->discount)
+                            <div class="flex items-center justify-between gap-x-2">
+                                <div class=" ">تخفیف</div>
+                                <div class="divider my-2 before:bg-base-300 after:bg-base-300 grow"></div>
+                                <div class="text-left ">{{ number_format($order->discount) }}
+                                    تومان
+                                </div>
+                            </div>
+                        @endif
 
                         <div class="flex items-center justify-between gap-x-2">
-                            <div class=" opacity-75">جمع محصولات</div>
+                            <div class=" ">جمع کل</div>
                             <div class="divider my-2 before:bg-base-300 after:bg-base-300 grow"></div>
                             <div class="text-left ">
-                                {{ number_format($order->items->sum('price')) }}
-                                تومان
-                            </div>
-                        </div>
-
-
-                        <div class="flex items-center justify-between gap-x-2">
-                            <div class=" opacity-75">هزینه ارسال</div>
-                            <div class="divider my-2 before:bg-base-300 after:bg-base-300 grow"></div>
-                            <div class="text-left ">{{ number_format($order->post) }}
-                                تومان
-                            </div>
-                        </div>
-
-                        <div class="flex items-center justify-between gap-x-2">
-                            <div class=" opacity-75">مالیات</div>
-                            <div class="divider my-2 before:bg-base-300 after:bg-base-300 grow"></div>
-                            <div class="text-left ">{{ number_format($order->tax) }}
-                                تومان
-                            </div>
-                        </div>
-
-                        <div class="flex items-center justify-between gap-x-2">
-                            <div class=" opacity-75">تخفیف</div>
-                            <div class="divider my-2 before:bg-base-300 after:bg-base-300 grow"></div>
-                            <div class="text-left ">{{ number_format($order->discount) }}
-                                تومان
-                            </div>
-                        </div>
-
-                        <div class="flex items-center justify-between gap-x-2">
-                            <div class=" opacity-75">جمع کل</div>
-                            <div class="divider my-2 before:bg-base-300 after:bg-base-300 grow"></div>
-                            <div class="text-left">
-                                {{ number_format($order->cost + $order->tax + $order->post - $order->discount) }}
-                                تومان
+                                <span
+                                    class="font-bold text-info">{{ number_format($order->cost + $order->tax + $order->post - $order->discount) }}</span>
+                                <span>تومان</span>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

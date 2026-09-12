@@ -1,6 +1,6 @@
 @props(['transaction'])
 
-<div class="collapse collapse-arrow bg-base-100 shadow-sm shadow-base-300">
+<div class="collapse collapse-arrow bg-base-100 border-2 border-base-300">
     <input type="checkbox" name="my-accordion-2" />
     <div class="collapse-title  flex flex-col gap-y-4 md:flex-row justify-between md:items-center items-start">
         <div class="text-right basis-1/4">

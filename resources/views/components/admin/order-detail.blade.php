@@ -1,4 +1,4 @@
-<div class="collapse collapse-arrow bg-base-100 shadow-sm shadow-base-300">
+<div class="collapse collapse-arrow bg-base-100 border-2 border-base-300">
     <input type="checkbox" name="my-accordion-2" />
     <div class="collapse-title  flex flex-col gap-y-4 md:flex-row justify-between md:items-center items-start">
         <div class="text-right basis-1/4">
@@ -41,7 +41,7 @@
             @if ($order->paid_at)
                 <div class="basis-1/2 p-2 flex flex-col md:flex-row gap-2">
                     <span class="opacity-75">تاریخ پرداخت:</span>
-                    <span class="font-medium">{{ verta($order->paid_at)->format('%d %B %Y') }}</span>
+                    <span class="font-medium">{{ verta($order->paid_at)->format('%d %B %Y - H:i:s') }}</span>
                 </div>
             @else
                 <div class="basis-1/2 flex flex-col md:flex-row gap-2"></div>
@@ -66,18 +66,14 @@
                 </div>
             </div>
 
-            <div class="basis-full">
-                <div class="overflow-x-auto rounded-box bg-base-200">
+            <div class="basis-full ">
+                <div class="overflow-x-auto bg-base-200 border-2 border-base-300 rounded-box">
                     <div class="p-2 sm:p-4 border-b-2 border-base-300 font-semibold">
                         <x-heroicon-s-cube class="size-5 sm:size-6 inline text-primary" />
                         محصولات سبد خرید
                     </div>
                     <div class="divide-y-2">
-                        @php $total = 0; @endphp
                         @foreach ($order->items as $item)
-                            @php
-                                $total += $item->price * $item->qty;
-                            @endphp
                             <div
                                 class="p-2 sm:px-4 sm:p-4 border-dashed border-base-300 flex flex-col md:flex-row items-start md:items-center justify-between">
                                 <div class="basis-2/6">{{ $item->product->title }}</div>
@@ -92,11 +88,12 @@
                             </div>
                         @endforeach
                         <div class="p-2 sm:p-4 text-left">مجموع: <span
-                                class="font-bold text-primary">{{ number_format($total) }}</span> تومان</div>
+                                class="font-bold text-primary">{{ number_format($order->items->sum('price')) }}</span>
+                            تومان</div>
                     </div>
                 </div>
 
-                <div class="mt-4 overflow-x-auto rounded-box bg-base-200">
+                <div class="mt-4 overflow-x-auto rounded-box bg-base-200 border-2 border-base-300">
                     <div class="p-2 sm:p-4 border-b-2 border-base-300 font-semibold">
                         <x-heroicon-s-calculator class="size-5 sm:size-6 inline text-secondary" />
                         جزییات
@@ -104,28 +101,42 @@
                     </div>
                     <div class="p-2 sm:px-4 mt-2">
                         <div class="flex items-center justify-between gap-x-2">
-                            <div class=" ">هزینه ارسال</div>
+                            <div class=" ">جمع سبد خرید</div>
                             <div class="divider my-2 before:bg-base-300 after:bg-base-300 grow"></div>
-                            <div class="text-left ">{{ number_format($order->post) }}
+                            <div class="text-left ">{{ number_format($order->items->sum('price')) }}
                                 تومان
                             </div>
                         </div>
 
-                        <div class="flex items-center justify-between gap-x-2">
-                            <div class=" ">مالیات</div>
-                            <div class="divider my-2 before:bg-base-300 after:bg-base-300 grow"></div>
-                            <div class="text-left ">{{ number_format($order->tax) }}
-                                تومان
+                        @if ($order->post)
+                            <div class="flex items-center justify-between gap-x-2">
+                                <div class=" ">هزینه ارسال</div>
+                                <div class="divider my-2 before:bg-base-300 after:bg-base-300 grow"></div>
+                                <div class="text-left ">{{ number_format($order->post) }}
+                                    تومان
+                                </div>
                             </div>
-                        </div>
+                        @endif
 
-                        <div class="flex items-center justify-between gap-x-2">
-                            <div class=" ">تخفیف</div>
-                            <div class="divider my-2 before:bg-base-300 after:bg-base-300 grow"></div>
-                            <div class="text-left ">{{ number_format($order->discount) }}
-                                تومان
+                        @if ($order->tax)
+                            <div class="flex items-center justify-between gap-x-2">
+                                <div class=" ">مالیات</div>
+                                <div class="divider my-2 before:bg-base-300 after:bg-base-300 grow"></div>
+                                <div class="text-left ">{{ number_format($order->tax) }}
+                                    تومان
+                                </div>
                             </div>
-                        </div>
+                        @endif
+
+                        @if ($order->discount)
+                            <div class="flex items-center justify-between gap-x-2">
+                                <div class=" ">تخفیف</div>
+                                <div class="divider my-2 before:bg-base-300 after:bg-base-300 grow"></div>
+                                <div class="text-left ">{{ number_format($order->discount) }}
+                                    تومان
+                                </div>
+                            </div>
+                        @endif
 
                         <div class="flex items-center justify-between gap-x-2">
                             <div class=" ">جمع کل</div>

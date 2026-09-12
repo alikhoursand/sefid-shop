@@ -10,7 +10,7 @@
 
 
     <div class="p-4 px-0">
-        <form action="{{ route('admin.order.search') }}" method="get">
+        <form action="{{ route('admin.order.list') }}" method="get">
             <div class="flex items-end flex-wrap gap-4">
                 <div class="w-[250px]">
                     <label for="id" class="text-sm block mb-2">شماره سفارش</label>

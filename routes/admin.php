@@ -82,7 +82,6 @@ Route::prefix('admin')->middleware(Admin::class)->group(function () {
         });
 
         Route::get('order/list', [AdminController::class, 'adminOrders'])->middleware(Admin::class)->name('admin.order.list');
-        Route::get('order/search', [AdminController::class, 'adminOrdersSearch'])->middleware(Admin::class)->name('admin.order.search');
 
     });
 });
