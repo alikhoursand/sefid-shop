@@ -2,8 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Shop\Categories;
-use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
 
@@ -23,7 +21,7 @@ class ProductCategorySeeder extends Seeder
 
             Storage::disk('public')->put($image, $contents);
 
-            Categories::create([
+            Category::create([
                 'title' => $title,
                 'slug' => str_replace(' ', '-', $title),
                 'status' => 1,

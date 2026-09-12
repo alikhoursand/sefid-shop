@@ -2,15 +2,13 @@
 
 namespace App\Classes\Shop;
 
-
-use App\Models\Shop\Categories;
+use App\Models\Shop\Category;
 
 class CategoryHelper
 {
-
     public function getRoots($count = null)
     {
-        $query = Categories::where('parent_id', null);
+        $query = Category::where('parent_id', null);
 
         if ($count != null) {
             $query->take($count);
@@ -30,7 +28,7 @@ class CategoryHelper
     public function getTreeFromIds($categoryIds)
     {
 
-        $categories = Categories::whereIn('id', $categoryIds)->get();
+        $categories = Category::whereIn('id', $categoryIds)->get();
         $categoriesWithChildren = $this->nestCategories($categories);
 
         return $categoriesWithChildren;
@@ -48,9 +46,9 @@ class CategoryHelper
     public function getAllCategoryIdsWithModels(array $categoryIds): array
     {
         $allIds = $categoryIds;
-        $allCategories = Categories::whereIn('id', $categoryIds)->get();
+        $allCategories = Category::whereIn('id', $categoryIds)->get();
 
-        $children = Categories::whereIn('parent_id', $categoryIds)->get();
+        $children = Category::whereIn('parent_id', $categoryIds)->get();
 
         if ($children->isNotEmpty()) {
             $childResult = $this->getAllCategoryIdsWithModels($children->pluck('id')->toArray());
@@ -65,16 +63,15 @@ class CategoryHelper
         ];
     }
 
-
     public function getTree($category_id = null)
     {
         if ($category_id != null) {
-            $categories = Categories::with('children')->find($category_id);
+            $categories = Category::with('children')->find($category_id);
             $categoriesWithChildren = $this->nestCategories([$categories]);
         } else {
-            $categories = Categories::where([
+            $categories = Category::where([
                 ['parent_id', null],
-                ['menu', 1]
+                ['menu', 1],
             ])->with('children')->get();
 
             $categoriesWithChildren = $this->nestCategories($categories);

@@ -15,15 +15,6 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
-    public function panelMessages()
-    {
-        $messages = Message::where([
-            ['user_id', Auth::id()],
-        ])->orderBy('id', 'desc')->paginate(16);
-
-        return view('user.panel.sections.messages', compact('messages'));
-    }
-
     public function readMessage(Request $request)
     {
         $message = Message::where([

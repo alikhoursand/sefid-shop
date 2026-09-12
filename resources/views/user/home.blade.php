@@ -26,7 +26,7 @@
 
         <section class="mt-12 px-2">
             <x-main.section-title :title="'جدیدترین‌ها'" :show_divider="true"></x-main.section-title>
-            <x-shop.product-grid :products="$new_products" :has_fade="['show' => true, 'link' => route('shop.product.list', ['sort' => 'newest'])]" :type="'normal'"></x-shop.product-grid>
+            <x-shop.product-slider :products="$new_products"></x-shop.product-slider>
         </section>
 
         <section class="my-12 px-2">

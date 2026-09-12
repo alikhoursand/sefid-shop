@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Shop;
 
 use App\Classes\Uploader;
 use App\Http\Controllers\Controller;
-use App\Models\Shop\Categories;
+use App\Models\Shop\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -12,7 +12,7 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = Categories::orderBy('id', 'desc')->paginate(16);
+        $categories = Category::orderBy('id', 'desc')->paginate(16);
 
         return view('admin.categories', compact('categories'));
     }
@@ -46,7 +46,7 @@ class CategoryController extends Controller
             $path = null;
         }
 
-        $create = Categories::create([
+        $create = Category::create([
             'title' => $request->title,
             'parent_id' => $request->parent_id ?? null,
             'slug' => str_replace(' ', '-', $request->title),
@@ -60,7 +60,7 @@ class CategoryController extends Controller
         return redirect()->route('admin.shop.category.index')->with('error', 'دسته بندی ثبت نشد');
     }
 
-    public function update(Request $request, Categories $category)
+    public function update(Request $request, Category $category)
     {
         $validator = Validator::make($request->all(), [
             'title' => 'required|string',
@@ -99,7 +99,7 @@ class CategoryController extends Controller
         return redirect()->route('admin.shop.category.index')->with('error', 'دسته بندی ویرایش نشد');
     }
 
-    public function changeStatus(Categories $category)
+    public function changeStatus(Category $category)
     {
         $category->update([
             'status' => $category->status == 1 ? 0 : 1,

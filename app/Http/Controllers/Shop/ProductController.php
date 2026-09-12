@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Shop;
 
 use App\Classes\Uploader;
 use App\Http\Controllers\Controller;
-use App\Models\Shop\Categories;
+use App\Models\Shop\Category;
 use App\Models\Shop\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -30,7 +30,7 @@ class ProductController extends Controller
 
     public function create()
     {
-        $categories = Categories::get();
+        $categories = Category::get();
 
         return view('admin.product.create', compact('categories'));
     }
@@ -95,7 +95,7 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-        $categories = Categories::get();
+        $categories = Category::get();
 
         return view('admin.product.edit', compact('categories', 'product'));
     }

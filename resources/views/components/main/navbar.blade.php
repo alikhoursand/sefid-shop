@@ -43,17 +43,24 @@
         </div>
         <div class="sm:flex basis-full hidden gap-4 items-center h-full ">
             <div>
-                <a class="{{ Route::currentRouteName() === 'home' ? 'border-b-2 border-primary text-primary' : 'opacity-75 hover:opacity-100 hover:text-primary' }} space-x-1 pb-1 transition-all duration-100 font-medium"
+                <a class="{{ Route::currentRouteName() === 'home' ? 'opacity-100 border-b-2 border-primary text-primary' : 'opacity-75 hover:opacity-100 hover:text-primary' }} space-x-1 pb-1 transition-all duration-100 font-medium"
                     href="{{ route('home') }}">
-                    <x-heroicon-o-home class="inline size-5"/>
+                    <x-heroicon-o-home class="inline size-5" />
                     <span class="">صفحه اصلی</span>
                 </a>
             </div>
             <div>
-                <a class="{{ Route::currentRouteName() === 'shop.product.list' ? 'border-b-2 border-primary text-primary' : 'opacity-75 hover:opacity-100 hover:text-primary' }} space-x-1 pb-1 hover:text-primary transition-all duration-100 opacity-75 font-medium hover:opacity-100"
+                <a class="{{ Route::currentRouteName() === 'shop.product.list' ? 'opacity-100 border-b-2 border-primary text-primary' : 'opacity-75 hover:opacity-100 hover:text-primary' }} space-x-1 pb-1 hover:text-primary transition-all duration-100 opacity-75 font-medium hover:opacity-100"
                     href="{{ route('shop.product.list') }}">
-                    <x-heroicon-o-squares-2x2 class="inline size-5"/>
+                    <x-heroicon-o-squares-2x2 class="inline size-5" />
                     <span class="">محصولات</span>
+                </a>
+            </div>
+            <div>
+                <a class="{{ Route::currentRouteName() === 'shop.offers' ? 'opacity-100 border-b-2 border-primary text-primary' : 'opacity-75 hover:opacity-100 hover:text-primary' }} space-x-1 pb-1 hover:text-primary transition-all duration-100 opacity-75 font-medium hover:opacity-100"
+                    href="{{ route('shop.offers') }}">
+                    <x-heroicon-o-percent-badge class="inline size-5" />
+                    <span class="">تخفیف‌ها</span>
                 </a>
             </div>
         </div>

@@ -4,9 +4,10 @@ namespace App\Models\Shop;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Categories extends Model
+class Category extends Model
 {
     protected $table = 'categories';
+
     protected $fillable = [
         'title',
         'slug',
@@ -28,14 +29,13 @@ class Categories extends Model
 
     public function parent()
     {
-        return $this->belongsTo(Categories::class, 'parent_id');
+        return $this->belongsTo(Category::class, 'parent_id');
     }
 
     public function children()
     {
-        return $this->hasMany(Categories::class, 'parent_id');
+        return $this->hasMany(Category::class, 'parent_id');
     }
-
 
     public function products()
     {

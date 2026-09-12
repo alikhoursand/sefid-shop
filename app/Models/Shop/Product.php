@@ -25,16 +25,16 @@ class Product extends Model
         'desc',
         'disable_comment',
         'help',
-        'help_desc'
+        'help_desc',
     ];
-
 
     public function category()
     {
-        return $this->belongsTo(Categories::class);
+        return $this->belongsTo(Category::class);
     }
 
-    public function images(){
+    public function images()
+    {
         return $this->hasMany(ProductImage::class, 'product_id', 'id');
     }
 }
