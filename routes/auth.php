@@ -10,11 +10,16 @@ Route::prefix('auth')->middleware('guest')->group(function () {
         return view('auth.login');
     })->name('login');
 
+    Route::get('login2', function () {
+        return view('auth.login-password');
+    })->name('login2');
+
     Route::get('register', function () {
         return redirect()->route('login');
     })->name('register');
 
     Route::post('login', [AuthController::class, 'authenticate'])->name('authenticate');
+    Route::post('login2', [AuthController::class, 'authenticateWithPassword'])->name('authentucate-password');
     Route::post('check-code', [AuthController::class, 'checkCode'])->name('checkCode');
     Route::get('check-code', function () {
         return redirect()->route('login');

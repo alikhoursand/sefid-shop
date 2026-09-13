@@ -30,7 +30,7 @@
         </div>
     </div>
 
-
+    @stack('footer_scripts')
 </body>
 
 </html>

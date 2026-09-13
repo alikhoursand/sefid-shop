@@ -2,7 +2,6 @@ import './bootstrap';
 import './swiper';
 import './jalalidatepicker.min.js'
 import './notyf.js'
-import './auth.js'
 import './imageInput.js'
 import './stateCity.js'
 

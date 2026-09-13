@@ -32,3 +32,43 @@
         </button>
     </form>
 @endsection
+
+
+@push('footer_scripts')
+    <script>
+        let loginForm = document.getElementById('userLogin');
+        if (loginForm) {
+            loginForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                document.querySelectorAll('.error').forEach(function(error) {
+                    error.innerText = '';
+                });
+
+                let isValid = true;
+
+                var phone = document.getElementById('phone');
+                // var password = document.getElementById('loginPass');
+
+                let phoneRegex = /(0?9)\d{2}\W?\d{3}\W?\d{4}/
+
+                if (!phone.value || phone.value.length != 11 || !phoneRegex.test(phone.value)) {
+                    // document.getElementById('phoneError').style.display = 'block';
+                    document.getElementById('phoneError').innerText = 'شماره موبایل را درست وارد کنید';
+                    isValid = false;
+                }
+
+                // if (!password.value) {
+                //     document.getElementById('passwordError').style.display = 'block';
+                //     document.getElementById('passwordError').innerText = 'رمز عبور را درست وارد کنید';
+                //     isValid = false;
+                // }
+
+
+                if (isValid) {
+                    this.submit();
+                }
+            });
+        }
+    </script>
+@endpush

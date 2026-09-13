@@ -13,4 +13,6 @@ Route::prefix('user')->middleware('auth')->group(function () {
 
     Route::get('dashboard', [UserController::class, 'panel'])->name('user.panel');
 
+    Route::post('/profile/password/update', [UserController::class, 'updatePassword'])->name('user.profile.password.update');
+
 });

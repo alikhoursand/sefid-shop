@@ -65,6 +65,42 @@
 
         </div>
     </div>
+
+    @if (auth()->user()->hasRole('admin'))
+        <div class="bg-base-100 mt-6 rounded-box p-4 shadow-md shadow-base-300">
+            <div class="">
+                <p class="font-medium flex gap-x-2 items-center lg:text-lg">
+                    <x-heroicon-s-lock-closed class="size-7 inline text-success" />
+                    <span>تغییر رمز عبور</span>
+                </p>
+            </div>
+            <div class="mt-8">
+                <form action="{{ route('user.profile.password.update') }}" method="post">
+                    @csrf
+                    <div class="grid grid-cols-4 gap-4">
+                        <div class="col-span-4 md:col-span-2 xl:col-span-2 ">
+                            <label for="password" class="block mb-2 text-sm font-medium">رمز عبور جدید</label>
+                            <input type="password" id="password" name="password" class="input w-full focus:outline-none"
+                                placeholder="" />
+                            @error('password')
+                                <span class="text-error text-sm ">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="col-span-4 md:col-span-2 xl:col-span-2 ">
+                            <label for="password_confirmation" class="block mb-2 text-sm font-medium">تایید رمز عبور
+                                جدید</label>
+                            <input type="password" id="password_confirmation" name="password_confirmation"
+                                class="input w-full focus:outline-none" placeholder="" />
+                            @error('password_confirmation')
+                                <span class="text-error text-sm ">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success w-32 mt-4">ثبت</button>
+                </form>
+            </div>
+        </div>
+    @endif
 @endsection
 
 @push('footer_scripts')

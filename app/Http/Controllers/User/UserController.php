@@ -5,7 +5,6 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Shop\Order;
 use App\Models\Shop\Transaction;
-use App\Models\User\Message;
 use App\Models\User\User;
 use Hekmatinasser\Verta\Facades\Verta;
 use Illuminate\Http\Request;
@@ -15,20 +14,40 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
-    public function readMessage(Request $request)
+    public function updatePassword(Request $request)
     {
-        $message = Message::where([
-            ['id', $request->message_id],
-            ['user_id', Auth::id()],
-            ['status', Message::STATUS_PENDING],
-        ])->first();
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'password' => ['required', 'string', 'min:6'],
+                'password_confirmation' => ['required', 'string', 'min:6'],
+            ],
+            [
+                'password.required' => 'رمز عبور را وارد کنید',
+                'password.string' => 'رمز عبور را درست وارد کنید',
+                'password.min' => 'رمز عبور باید حداقل ۶ کاراکتر باشد',
+                'password_confirmation.required' => 'تایید رمز عبور را وارد کنید',
+                'password_confirmation.string' => 'تایید رمز عبور را درست وارد کنید',
+                'password_confirmation.min' => 'تایید رمز عبور باید حداقل ۶ کاراکتر باشد',
+            ]
+        );
 
-        if ($message) {
-            $message->update(['status' => Message::STATUS_READ]);
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
 
-            return response()->json('read!', 200);
+        $user = Auth::user();
+
+        $update = $user->update([
+            'password' => $request->password,
+        ]);
+
+        if ($update) {
+            return redirect()->back()->with('success', 'رمز عبور با موفقیت تغییر یافت');
         } else {
-            return response()->json('Message not found, or maybe not for you', 400);
+            return redirect()->back()->with('error', 'خطا! لطفا دوباره تلاش کنید.');
         }
     }
 
