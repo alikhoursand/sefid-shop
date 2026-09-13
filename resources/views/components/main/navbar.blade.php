@@ -58,6 +58,11 @@
                 <x-heroicon-o-percent-badge class="inline size-5" />
                 <span class="">تخفیف‌ها</span>
             </a>
+            <a class="btn hover:bg-base-100 hover:shadow-none hover:text-primary btn-md border-0 btn-ghost space-x-1 {{ Route::currentRouteName() === 'faqs' ? 'text-primary' : '' }}"
+                href="{{ route('faqs') }}">
+                <x-heroicon-o-question-mark-circle class="inline size-5" />
+                <span class="">سوالات متداول</span>
+            </a>
             <div id="c3" popover>
                 <div class="flex max-sm:flex-col items-start">
                     <ul class="menu w-full md:menu-horizontal">

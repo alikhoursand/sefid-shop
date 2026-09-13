@@ -16,8 +16,6 @@ class IndexController extends Controller
             ['special', 1],
         ])->latest()->limit(12)->get();
 
-        $faqs = Faq::get();
-
         $most_sold = Product::where([
             ['status', 1],
             ['most_sold', 1],
@@ -30,7 +28,14 @@ class IndexController extends Controller
 
         $banners_sliders = Banner::where('status', 1)->get()->groupBy('position');
 
-        return view('user.home', compact('faqs', 'banners_sliders', 'new_products', 'special_categories', 'most_sold'));
+        return view('user.home', compact('banners_sliders', 'new_products', 'special_categories', 'most_sold'));
 
+    }
+
+    public function faq()
+    {
+        $faqs = Faq::get();
+
+        return view('user.faq', compact('faqs'));
     }
 }

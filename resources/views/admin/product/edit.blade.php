@@ -8,7 +8,7 @@
         [
             'title' => 'ویرایش محصول',
         ],
-    ]"></x-admin.page-title>
+    ]" />
 
     <div>
         <form action="{{ route('admin.shop.product.update', $product->id) }}" method="POST" enctype="multipart/form-data">

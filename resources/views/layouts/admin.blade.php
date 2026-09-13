@@ -19,7 +19,7 @@
             <input id="my-drawer-4" type="checkbox" class="drawer-toggle" />
             <div class="drawer-side">
                 <label for="my-drawer-4" aria-label="close sidebar" class="drawer-overlay"></label>
-                <x-admin.sidebar-content :type="'sidebar'"></x-admin.sidebar-content>
+                <x-admin.sidebar-content :type="'sidebar'" />
             </div>
         </div>
 
@@ -33,15 +33,6 @@
         </div>
 
     </div>
-
-
-    {{-- <aside id="logo-sidebar" --}}
-    {{--       class="hidden z-40 top-0 right-0 w-64 h-screen transition-transform translate-x-full lg:translate-x-0 lg:block" --}}
-    {{--       aria-label="Sidebar"> --}}
-    {{--    <x-admin.sidebar-content :type="'sidebar'"></x-admin.sidebar-content> --}}
-    {{-- </aside> --}}
-
-
 
     <dialog id="error_dialog" class="modal">
         <div class="modal-box bg-base-300">

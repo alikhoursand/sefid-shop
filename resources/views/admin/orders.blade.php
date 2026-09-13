@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
 
-    <x-admin.page-title :page_title="'سفارش‌ها'"></x-admin.page-title>
+    <x-admin.page-title :page_title="'سفارش‌ها'" />
 
     <p class="font-medium p-4 px-0">
         <span>لیست سفارش‌ها</span>
@@ -26,7 +26,7 @@
     <div class="flex flex-col gap-y-2">
         @if ($orders->count() > 0)
             @foreach ($orders as $order)
-                <x-admin.order-detail :order="$order"></x-admin.order-detail>
+                <x-admin.order-detail :order="$order" />
             @endforeach
         @else
             <div class="my-10 flex flex-col gap-y-2">

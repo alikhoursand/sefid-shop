@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-    <x-admin.page-title :page_title="'لیست کاربران'"></x-admin.page-title>
+    <x-admin.page-title :page_title="'لیست کاربران'" />
 
     <div class="mb-4">
         <form action="{{ route('admin.user.list') }}" method="get">

@@ -10,7 +10,7 @@
         <div class="mt-8 flex flex-col gap-y-2">
             @if (count($transactions) > 0)
                 @foreach ($transactions as $transaction)
-                    <x-user-panel.transaction-single :transaction="$transaction"></x-user-panel.transaction-single>
+                    <x-user-panel.transaction-single :transaction="$transaction" />
                 @endforeach
 
                 @if ($transactions->total() > 16)

@@ -10,7 +10,7 @@
             'link' => 'admin.shop.discount.edit',
             'params' => $discount->id,
         ],
-    ]"></x-admin.page-title>
+    ]" />
 
     <div>
         <form action="{{ route('admin.shop.discount.update', $discount->id) }}" method="POST">

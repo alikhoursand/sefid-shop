@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-    <x-admin.page-title :page_title="'بنرها'"></x-admin.page-title>
+    <x-admin.page-title :page_title="'بنرها'" />
 
 
 

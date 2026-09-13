@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-    <x-admin.page-title :page_title="'کد تخفیف‌ها'"></x-admin.page-title>
+    <x-admin.page-title :page_title="'کد تخفیف‌ها'" />
 
     <div class="mb-8 flex items-center justify-start gap-x-2">
         <a href="{{ route('admin.shop.discount.create') }}" class="btn btn-success">
@@ -105,7 +105,7 @@
                         <td class="text-center">
                             <a href="{{ route('admin.shop.discount.edit', $discount->id) }}"
                                 class="btn btn-warning btn-sm">
-                                <x-heroicon-s-pencil-square class="size-4" />
+                                <x-heroicon-s-pencil class="size-4" />
                                 ویرایش
                             </a>
 

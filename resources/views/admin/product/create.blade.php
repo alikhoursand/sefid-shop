@@ -8,7 +8,7 @@
         [
             'title' => 'ثبت محصول',
         ],
-    ]"></x-admin.page-title>
+    ]" />
 
     <div>
         <form action="{{ route('shop.product.store') }}" method="POST" enctype="multipart/form-data">

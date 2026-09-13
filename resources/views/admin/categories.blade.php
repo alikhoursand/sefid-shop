@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-    <x-admin.page-title :page_title="'دسته‌بندی محصولات'"></x-admin.page-title>
+    <x-admin.page-title :page_title="'دسته‌بندی محصولات'" />
 
     <div class="mb-4 flex items-center justify-start gap-x-2">
         <button onclick="new_category.showModal()" class="btn btn-success">
@@ -78,7 +78,7 @@
                             <button
                                 onclick="setModalUID('{{ route('admin.shop.category.update', $category->slug) }}','{{ $category->title }}','{{ $category->parent_id }}','{{ Storage::url($category->image) }}')"
                                 class="btn btn-warning btn-sm">
-                                <x-heroicon-s-pencil-square class="size-4" />
+                                <x-heroicon-s-pencil class="size-4" />
                                 ویرایش
                             </button>
 

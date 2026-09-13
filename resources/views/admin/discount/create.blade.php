@@ -9,7 +9,7 @@
             'title' => 'افزودن کد تخفیف',
             'link' => 'admin.shop.discount.create',
         ],
-    ]"></x-admin.page-title>
+    ]" />
     <div>
         <form action="{{ route('admin.shop.discount.store') }}" method="POST" enctype="multipart/form-data">
             @csrf

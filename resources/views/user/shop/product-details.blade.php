@@ -17,7 +17,7 @@
                     'link' => route('shop.category.view', $product->category->slug),
                     'color' => 'primary',
                 ],
-            ]"></x-main.breadcrumbs>
+            ]" />
         </div>
         <div class=" grid grid-cols-12 gap-6 ">
             <div
@@ -149,8 +149,8 @@
 
     <section class=" bg-base-300  mt-12 py-8 px-2">
         <div class="max-w-screen-xl mx-auto">
-            <x-main.section-title :title="'محصولات مرتبط'" :show_divider="true"></x-main.section-title>
-            <x-shop.product-slider :products="$similar_products"></x-shop.product-slider>
+            <x-main.section-title :title="'محصولات مرتبط'" :show_divider="true" />
+            <x-shop.product-slider :products="$similar_products" />
         </div>
     </section>
 

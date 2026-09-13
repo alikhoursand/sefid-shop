@@ -2,7 +2,7 @@
 @section('content')
 
     <section class="max-w-screen-lg mx-auto">
-        <x-main.cart-header :step="2"></x-main.cart-header>
+        <x-main.cart-header :step="2" />
     </section>
 
     <section class="max-w-screen-xl mt-2 sm:mt-12 mx-auto">
@@ -120,7 +120,7 @@
                         'payable_amount',
                         'products_discount',
                         'real_discount',
-                    ]" :cart_details="$cart_details"></x-shop.cart-details>
+                    ]" :cart_details="$cart_details" />
 
             </div>
 

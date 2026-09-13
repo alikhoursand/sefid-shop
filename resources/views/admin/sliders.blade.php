@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-    <x-admin.page-title :page_title="'اسلایدرها'"></x-admin.page-title>
+    <x-admin.page-title :page_title="'اسلایدرها'" />
 
     <div class="bg-base-100 shadow-md shadow-base-300 rounded-box p-4">
         <form action="{{ route('admin.slider.store') }}" method="POST" enctype="multipart/form-data">

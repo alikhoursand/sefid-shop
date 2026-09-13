@@ -4,8 +4,7 @@
         <div id="shop-loader" class="absolute hidden left-0 top-0 z-1 w-full h-full rounded-box bg-base-200 opacity-60">
         </div>
 
-        <x-main.section-title :color="$shop_type == 'normal' ? '' : 'error'" :icon="$shop_type == 'normal' ? 'category' : 'offer'" :title="$shop_type == 'normal' ? ($category ? $category->title : 'محصولات') : 'محصولات تخفیف دار'" :position="'center'"
-            :show_divider="false"></x-main.section-title>
+        <x-main.section-title :color="$shop_type == 'normal' ? '' : 'error'" :icon="$shop_type == 'normal' ? 'category' : 'offer'" :title="$shop_type == 'normal' ? ($category ? $category->title : 'محصولات') : 'محصولات تخفیف دار'" :position="'center'" :show_divider="false" />
 
         <section class="my-12">
             <div class="grid grid-cols-12 gap-4">

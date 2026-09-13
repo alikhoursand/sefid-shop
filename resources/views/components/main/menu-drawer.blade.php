@@ -41,6 +41,13 @@
                 </div>
                 <div class="divider my-0"></div>
                 <div class="">
+                    <a class="p-2 block space-x-1 hover:text-primary duration-200" href="{{ route('faqs') }}">
+                        <x-heroicon-o-question-mark-circle class="inline size-6" />
+                        <span class="">سوالات متداول</span>
+                    </a>
+                </div>
+                <div class="divider my-0"></div>
+                <div class="">
                     @if (auth()->check() && auth()->user()->hasRole('admin'))
                         <a href="{{ route('admin.panel') }}" class="p-2 block space-x-1 text-primary duration-200">
                             <x-heroicon-o-user class="inline size-6" />

@@ -10,7 +10,7 @@
     <div class="grid grid-cols-12 gap-x-2 sm:gap-x-4 gap-y-6 lg:gap-8">
         @foreach ($products as $product)
             <div class="col-span-6 sm:col-span-4">
-                <x-shop.product-card :product="$product" :type="$type"></x-shop.product-card>
+                <x-shop.product-card :product="$product" :type="$type" />
             </div>
         @endforeach
     </div>

@@ -11,7 +11,7 @@
         <div class="mt-8 flex flex-col gap-y-2">
             @if (count($orders) > 0)
                 @foreach ($orders as $order)
-                    <x-user-panel.order-single :order="$order"></x-user-panel.order-single>
+                    <x-user-panel.order-single :order="$order" />
                 @endforeach
 
                 @if ($orders->total() > 16)

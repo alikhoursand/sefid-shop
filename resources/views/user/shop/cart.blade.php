@@ -3,7 +3,7 @@
 
     <section class="">
         <section class="max-w-screen-lg mx-auto">
-            <x-main.cart-header :step="1"></x-main.cart-header>
+            <x-main.cart-header :step="1" />
         </section>
         @php
             $error = false;
@@ -44,8 +44,7 @@
                     @endif
                 </div>
 
-                <div
-                    class="col-span-12 lg:col-span-8 bg-base-100 shadow-md shadow-base-300 rounded-box overflow-hidden">
+                <div class="col-span-12 lg:col-span-8 bg-base-100 shadow-md shadow-base-300 rounded-box overflow-hidden">
                     <div class=" p-2 2xs:p-4 space-y-2">
                         <div class="md:flex opacity-75  font-medium text-sm gap-x-4 hidden">
                             <div class="md:basis-6/12 "> کالاها <span
@@ -58,12 +57,12 @@
                         @if (count($cart_items) > 0)
                             <div class="divide-y-2">
                                 @foreach ($cart_items as $item)
-                                    <x-shop.cart-page-item :item="$item"></x-shop.cart-page-item>
+                                    <x-shop.cart-page-item :item="$item" />
                                 @endforeach
                             </div>
                         @else
                             <div class="my-10 text-center opacity-75 font-medium">
-                                <x-heroicon-s-shopping-bag class="size-20 text-base-content/70 mx-auto"/>
+                                <x-heroicon-s-shopping-bag class="size-20 text-base-content/70 mx-auto" />
                                 <div class="mt-8 text-sm md:text-base text-base-content/70">سبد خرید شما خالی است</div>
                             </div>
                         @endif
@@ -71,12 +70,7 @@
                 </div>
 
                 <div class="col-span-12 lg:col-span-4 hidden sm:block">
-                    <x-shop.cart-details
-                        :method="'link'"
-                        :next_step="['text' => 'ثبت سفارش', 'link' => route('shop.order.details'), 'arrow' => true]"
-                        :show="['total_price','payable_amount','products_discount','real_discount']"
-                        :cart_details="$cart_details"
-                    ></x-shop.cart-details>
+                    <x-shop.cart-details :method="'link'" :next_step="['text' => 'ثبت سفارش', 'link' => route('shop.order.details'), 'arrow' => true]" :show="['total_price', 'payable_amount', 'products_discount', 'real_discount']" :cart_details="$cart_details" />
                 </div>
 
             </div>
@@ -87,14 +81,14 @@
         <section class="hidden sm:block max-w-screen-xl mx-auto mt-2 p-2">
             <div class="flex justify-between items-center">
                 <a href="{{ route('home') }}" class="btn btn-wide">
-                    <x-heroicon-c-chevron-right class="size-5"/>
+                    <x-heroicon-c-chevron-right class="size-5" />
                     <span>بازگشت</span>
                 </a>
 
             </div>
         </section>
 
-        <x-shop.order-navigation :cart_items="$cart_items" :cart_details="$cart_details"></x-shop.order-navigation>
+        <x-shop.order-navigation :cart_items="$cart_items" :cart_details="$cart_details" />
 
 
     </section>

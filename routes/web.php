@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IndexController::class, 'home'])->name('home');
+Route::get('/faq', [IndexController::class, 'faq'])->name('faqs');
 
 Route::middleware('api')->group(function () {
     Route::get('api/get-cities', function (Request $request) {

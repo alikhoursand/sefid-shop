@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-    <x-admin.page-title :page_title="'لیست محصولات'"></x-admin.page-title>
+    <x-admin.page-title :page_title="'لیست محصولات'" />
 
     <div class="mb-8 flex items-center justify-start gap-x-2">
         <a href="{{ route('admin.shop.product.create') }}" class="btn btn-success">
@@ -124,7 +124,7 @@
                         </td>
                         <td class="text-center min-w-[100px]">
                             <a href="{{ route('admin.shop.product.edit', $product->id) }}" class="btn btn-warning btn-sm">
-                                <x-heroicon-s-pencil-square class="size-4" />
+                                <x-heroicon-s-pencil class="size-4" />
                                 ویرایش
                             </a>
                             <button onclick="qty_modal.showModal()" class="btn btn-secondary btn-sm mr-1 qty-btn"

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-    <x-admin.page-title :page_title="'تراکنش‌ها'"></x-admin.page-title>
+    <x-admin.page-title :page_title="'تراکنش‌ها'" />
 
     <p class="font-medium p-4  px-0">
         <span>لیست تراکنش‌ها</span>
@@ -24,7 +24,7 @@
     <div class="flex flex-col gap-y-2">
         @if (count($transactions) > 0)
             @foreach ($transactions as $transaction)
-                <x-admin.transaction-detail :transaction="$transaction"></x-admin.transaction-detail>
+                <x-admin.transaction-detail :transaction="$transaction" />
             @endforeach
         @else
             <div class="my-10 flex flex-col gap-y-2">

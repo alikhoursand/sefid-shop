@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\FaqController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\Shop\CategoryController;
 use App\Http\Controllers\Shop\DiscountController;
@@ -25,6 +26,12 @@ Route::prefix('admin')->middleware(Admin::class)->group(function () {
 
     Route::prefix('transactions')->group(function () {
         Route::get('/list', [AdminController::class, 'adminTransactions'])->name('admin.transactions');
+    });
+
+    Route::prefix('faqs')->group(function () {
+        Route::get('list', [FaqController::class, 'list'])->name('admin.faq.list');
+        Route::post('store', [FaqController::class, 'store'])->name('admin.faq.store');
+        Route::put('update', [FaqController::class, 'update'])->name('admin.faq.update');
     });
 
     Route::prefix('banners')->group(function () {

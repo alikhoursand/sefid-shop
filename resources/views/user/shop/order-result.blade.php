@@ -1,7 +1,7 @@
 @extends('layouts.order')
 @section('content')
     <section class="max-w-screen-lg mx-auto">
-        <x-main.cart-header :step="4"></x-main.cart-header>
+        <x-main.cart-header :step="4" />
     </section>
 
     <section class="max-w-screen-xl mt-2 sm:mt-12 mx-auto px-2">
@@ -19,7 +19,8 @@
                     <div class="flex items-center justify-between gap-x-2 py-4">
                         <div class="opacity-75">کد رهگیری:</div>
                         <div class="grow-1 border-t border-base-content/20 border-dashed"></div>
-                        <div>{{ $transaction->trace ?? ($transaction->track_id ?? 'order-' . $transaction->order_id) }}</div>
+                        <div>{{ $transaction->trace ?? ($transaction->track_id ?? 'order-' . $transaction->order_id) }}
+                        </div>
                     </div>
                 @elseif($status == 3)
                     {{-- verified --}}

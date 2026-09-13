@@ -1,7 +1,7 @@
 @extends('layouts.order')
 @section('content')
     <section class="max-w-screen-lg mx-auto">
-        <x-main.cart-header :step="3"></x-main.cart-header>
+        <x-main.cart-header :step="3" />
     </section>
 
     <section class="mt-2 sm:mt-12 max-w-screen-xl mx-auto px-2">
@@ -67,7 +67,7 @@
             <div class="col-span-12 lg:col-span-5 xl:col-span-4">
 
                 <x-shop.cart-details :method="'js'" :step="3" :discount="$discount" :next_step="['text' => 'پرداخت', 'function' => 'pay()', 'arrow' => false]"
-                    :show="['total_price', 'post_cost', 'payable_amount', 'products_discount', 'real_discount']" :cart_details="$cart_details"></x-shop.cart-details>
+                    :show="['total_price', 'post_cost', 'payable_amount', 'products_discount', 'real_discount']" :cart_details="$cart_details" />
 
             </div>
         </div>
