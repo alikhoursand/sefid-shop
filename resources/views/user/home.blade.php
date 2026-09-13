@@ -16,7 +16,10 @@
         </section>
 
         <section class="mt-12 px-2">
-            <x-main.section-title :show_divider="true" :title="'دسته‌بندی‌ها'" />
+            <x-main.section-title :show_divider="true" :link="[
+                'title' => 'مشاهده همه',
+                'link' => route('shop.category.list'),
+            ]" :title="'دسته‌بندی‌ها'" />
             <x-main.categories :categories="$special_categories" />
         </section>
 
