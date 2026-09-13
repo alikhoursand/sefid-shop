@@ -12,6 +12,13 @@ class ShopController extends Controller
 {
     public function products(Request $request)
     {
+
+        if ($request->filled('category')) {
+            $cat = Category::where('slug', $request->category)->first();
+        } else {
+            $cat = null;
+        }
+
         $products = Product::query()
             ->where('status', 1)
             ->when($request->filled('q'), function ($q) use ($request) {
@@ -20,8 +27,7 @@ class ShopController extends Controller
                         ->orWhere('code', $request->q);
                 });
             })
-            ->when($request->filled('category'), function ($q) use ($request) {
-                $cat = Category::where('slug', $request->category)->first();
+            ->when($cat, function ($q) use ($cat) {
                 if ($cat) {
                     $q->where('category_id', $cat->id);
                 }
@@ -52,12 +58,11 @@ class ShopController extends Controller
                 break;
         }
 
-        $categories = Category::get();
         $products = $products->paginate(18)->appends($request->query());
 
         return view('user.shop.product-list', [
             'products' => $products,
-            'categories' => $categories,
+            'category' => $cat,
             'shop_type' => 'normal',
             'search_route' => route('shop.product.list'),
         ]);
@@ -73,12 +78,6 @@ class ShopController extends Controller
                     $sub->where('title', 'like', '%'.$request->q.'%')
                         ->orWhere('code', $request->q);
                 });
-            })
-            ->when($request->filled('category'), function ($q) use ($request) {
-                $cat = Category::where('slug', $request->category)->first();
-                if ($cat) {
-                    $q->where('category_id', $cat->id);
-                }
             })
             ->when($request->boolean('avail'), function ($q) {
                 $q->where('qty', '!=', 0);
@@ -103,12 +102,10 @@ class ShopController extends Controller
                 break;
         }
 
-        $categories = Category::get();
         $products = $products->paginate(18)->appends($request->query());
 
         return view('user.shop.product-list', [
             'products' => $products,
-            'categories' => $categories,
             'shop_type' => 'offers',
             'search_route' => route('shop.offers'),
         ]);
@@ -118,7 +115,7 @@ class ShopController extends Controller
     {
         $categories = Category::get();
 
-        return view('user.pages.shop.categories', compact('categories'));
+        return view('user.shop.categories', compact('categories'));
     }
 
     public function view(Product $product)

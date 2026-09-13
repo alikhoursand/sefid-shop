@@ -41,7 +41,44 @@
                 <x-heroicon-s-shopping-bag class="size-6" />
             </label>
         </div>
-        <div class="sm:flex basis-full hidden gap-4 items-center h-full ">
+        <div class="megamenu basis-full max-sm:megamenu-vertical megamenu-wide sm:h-10" id="my-megamenu-3" popover>
+            <span class="megamenu-active"></span>
+            <a class="btn hover:bg-base-100 hover:shadow-none hover:text-primary btn-md border-0 btn-ghost space-x-1 {{ Route::currentRouteName() === 'home' ? 'text-primary' : '' }}"
+                href="{{ route('home') }}">
+                <x-heroicon-o-home class="inline size-5" />
+                <span class="">صفحه اصلی</span>
+            </a>
+            <button class="btn hover:bg-base-100 hover:shadow-none hover:text-primary btn-md btn-ghost"
+                popovertarget="c3">
+                <x-heroicon-o-squares-2x2 class="inline size-5" />
+                <span class="">محصولات</span>
+            </button>
+            <a class="btn hover:bg-base-100 hover:shadow-none hover:text-primary btn-md border-0 btn-ghost space-x-1 {{ Route::currentRouteName() === 'shop.offers' ? 'text-primary' : '' }}"
+                href="{{ route('shop.offers') }}">
+                <x-heroicon-o-percent-badge class="inline size-5" />
+                <span class="">تخفیف‌ها</span>
+            </a>
+            <div id="c3" popover>
+                <div class="flex max-sm:flex-col items-start">
+                    <ul class="menu w-full md:menu-horizontal">
+                        @foreach ($categories as $category)
+                            <li>
+                                <ul>
+                                    <li class="menu-title">{{ $category->title }}</li>
+                                    @foreach ($category->children as $subCategory)
+                                        <li><a
+                                                href="{{ route('shop.product.list', ['category' => $subCategory->slug]) }}">{{ $subCategory->title }}</a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        {{-- <div class="sm:flex basis-full hidden gap-4 items-center h-full ">
             <div>
                 <a class="{{ Route::currentRouteName() === 'home' ? 'opacity-100 border-b-2 border-primary text-primary' : 'opacity-75 hover:opacity-100 hover:text-primary' }} space-x-1 pb-1 transition-all duration-100 font-medium"
                     href="{{ route('home') }}">
@@ -50,7 +87,8 @@
                 </a>
             </div>
             <div>
-                <a class="{{ Route::currentRouteName() === 'shop.product.list' ? 'opacity-100 border-b-2 border-primary text-primary' : 'opacity-75 hover:opacity-100 hover:text-primary' }} space-x-1 pb-1 hover:text-primary transition-all duration-100 opacity-75 font-medium hover:opacity-100"
+                <a popovertarget="my-megamenu-3"
+                    class="{{ Route::currentRouteName() === 'shop.product.list' ? 'opacity-100 border-b-2 border-primary text-primary' : 'opacity-75 hover:opacity-100 hover:text-primary' }} space-x-1 pb-1 hover:text-primary transition-all duration-100 opacity-75 font-medium hover:opacity-100"
                     href="{{ route('shop.product.list') }}">
                     <x-heroicon-o-squares-2x2 class="inline size-5" />
                     <span class="">محصولات</span>
@@ -63,7 +101,7 @@
                     <span class="">تخفیف‌ها</span>
                 </a>
             </div>
-        </div>
+        </div> --}}
     </div>
 </div>
 

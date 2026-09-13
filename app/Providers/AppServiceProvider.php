@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
             'user.home',
         ], function ($view) {
 
-            $settings = SiteHelper::getAllSetting(false,true);
+            $settings = SiteHelper::getAllSetting(false, true);
 
             $view->with('settings', $settings);
         });
@@ -37,20 +37,25 @@ class AppServiceProvider extends ServiceProvider
             'components.main.footer',
         ], function ($view) {
 
-            $settings = SiteHelper::getAllSetting(false,false);
+            $settings = SiteHelper::getAllSetting(false, false);
 
             $view->with('settings', $settings);
         });
 
-
         View::composer([
-            'components.main.navbar'
+            'components.main.navbar',
         ], function ($view) {
 
-            $cart_class = new CartHelper();
+            $cart_class = new CartHelper;
             $cart = $cart_class->getCart();
 
-            $view->with('cart', $cart);
+            $category_helper = new CategoryHelper;
+            $categories = $category_helper->getRoots();
+
+            $view->with([
+                'cart' => $cart,
+                'categories' => $categories,
+            ]);
         });
     }
 }

@@ -16,7 +16,7 @@
                 </label>
             </div>
 
-            <div class=" mt-2 p-2 text-lg">
+            <div class=" mt-2 p-2 text-base">
 
                 <div class="">
                     <a class="p-2 block space-x-1 hover:text-primary duration-200" href="{{ route('home') }}">
@@ -24,28 +24,29 @@
                         <span class="">صفحه اصلی</span>
                     </a>
                 </div>
-                <div class="divider my-2"></div>
+                <div class="divider my-0"></div>
                 <div class="">
                     <a class="p-2 block space-x-1 hover:text-primary duration-200"
-                        href="{{ route('shop.product.list') }}">
+                        href="{{ route('shop.category.list') }}">
                         <x-heroicon-o-squares-2x2 class="inline size-6" />
-                        <span class="">محصولات</span>
+                        <span class="">دسته‌بندی‌ها</span>
                     </a>
                 </div>
-                <div class="divider my-2"></div>
+                <div class="divider my-0"></div>
                 <div class="">
                     <a class="p-2 block space-x-1 hover:text-primary duration-200" href="{{ route('shop.offers') }}">
                         <x-heroicon-o-percent-badge class="inline size-6" />
                         <span class="">تخفیف‌ها</span>
                     </a>
                 </div>
-                <div class="divider my-2"></div>
+                <div class="divider my-0"></div>
                 <div class="">
                     @if (auth()->check() && auth()->user()->hasRole('admin'))
                         <a href="{{ route('admin.panel') }}" class="p-2 block space-x-1 text-primary duration-200">
                             <x-heroicon-o-user class="inline size-6" />
                             <span class="group-hover:mr-2 duration-200">پنل مدیریت</span>
                         </a>
+                        <div class="divider my-0"></div>
                     @endif
                     <a href="{{ auth()->check() ? route('user.panel') : route('login') }}"
                         class="p-2 block space-x-1 text-primary duration-200">
