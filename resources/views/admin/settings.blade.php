@@ -86,6 +86,11 @@
                             class="input focus:outline-none w-full" value="{{ $settings_array['email'] }}" />
                     </div>
 
+                    <div class="col-span-4 md:col-span-2 xl:col-span-1">
+                        <label for="whatsapp" class="block mb-2 text-sm  ">واتساپ</label>
+                        <input type="text" id="whatsapp" name="whatsapp" dir="ltr"
+                            class="input focus:outline-none w-full" value="{{ $settings_array['whatsapp'] }}" />
+                    </div>
                 </div>
 
                 <button type="submit" class="btn btn-success">

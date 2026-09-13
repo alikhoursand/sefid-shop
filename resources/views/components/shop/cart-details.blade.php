@@ -26,8 +26,8 @@
                     </button>
                 </div>
                 @if ($discount != null ? 'btn-disabled' : '')
-                    <div class="text-sm text-accent">
-                        <x-heroicon-m-percent-badge class="size-5" />
+                    <div class="alert alert-success alert-soft mt-1 ">
+                        <x-heroicon-m-percent-badge class="size-5 inline" />
                         <span class="">تخفیف برای این سفارش اعمال شده است!</span>
                     </div>
                 @endif
@@ -97,7 +97,7 @@
             <div class="flex items-center justify-between">
                 <div class="opacity-75">
                     @if ($step == 2)
-                        جمع قابل پرداخت:
+                        مجموع قابل پرداخت:
                     @elseif($step == 3)
                         مبلغ نهایی قابل پرداخت:
                     @else
@@ -110,7 +110,7 @@
                 </div>
             </div>
 
-            <div class="flex flex-col items-center justify-between mt-4">
+            <div class="hidden sm:flex flex-col items-center justify-between mt-4">
                 @if ($previous_step)
                     <a href="{{ $previous_step }}" class="btn btn-soft btn-sm btn-block">
                         <x-heroicon-c-chevron-right class="size-5" />

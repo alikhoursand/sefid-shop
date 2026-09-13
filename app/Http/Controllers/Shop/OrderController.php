@@ -8,8 +8,8 @@ use App\Classes\Shop\OrderHelper;
 use App\Classes\Shop\TransactionHelper;
 use App\Classes\SiteHelper;
 use App\Http\Controllers\Controller;
-use App\Models\Shop\Discount;
 use App\Models\Shop\Cart;
+use App\Models\Shop\Discount;
 use App\Models\Shop\Order;
 use App\Models\Shop\Product;
 use App\Models\Shop\Transaction;
@@ -25,8 +25,6 @@ use Shetabit\Payment\Facade\Payment as ShetabitPayment;
 
 class OrderController extends Controller
 {
-
-
     public function details()
     {
         $cart_items = Cart::where('user_id', Auth::id())->get();
@@ -37,13 +35,12 @@ class OrderController extends Controller
 
         $validated = CartHelper::validate($cart_items);
 
-        if (!$validated['status']) {
+        if (! $validated['status']) {
             return redirect()->route('shop.cart.index')->with('error', [
                 'message' => 'لطفا سبد خرید را بررسی کنید!',
                 'products' => $validated['products'],
             ]);
         }
-
 
         $states = SiteHelper::getStates();
         $address = OrderHelper::getActiveOrderAddress(true);
@@ -73,7 +70,7 @@ class OrderController extends Controller
                 'postal_code' => ['required', 'size:10', 'string'],
                 'city_id' => ['required', 'integer'],
                 'state_id' => ['required', 'integer'],
-                'address' => ['required', 'string']
+                'address' => ['required', 'string'],
 
             ],
             [
@@ -102,7 +99,6 @@ class OrderController extends Controller
         $cart_items = Cart::where('user_id', auth('web')->user()->id)->get();
         $cart_details = CartHelper::getCartDetails($cart_items);
 
-
         $params = [
             'user_id' => auth('web')->user()->id,
             'tax' => $cart_details['tax_amount'],
@@ -122,9 +118,7 @@ class OrderController extends Controller
 
         $validated = CartHelper::validate($cart_items);
 
-
         $existing_order = OrderHelper::getActiveOrder();
-
 
         if ($existing_order) {
             $order = $existing_order->update($params);
@@ -132,16 +126,14 @@ class OrderController extends Controller
             $order = Order::create($params);
         }
 
-
-        if (!$validated['status']) {
+        if (! $validated['status']) {
             return redirect()->route('shop.cart.index')->with('error', [
                 'message' => 'لطفا سبد خرید را بررسی کنید!',
                 'products' => $validated['products'],
             ]);
         }
 
-
-        if (!$order) {
+        if (! $order) {
             return redirect()->back()->with('error', 'خطا در ثبت سفارش! لطفا دوباره تلاش کنید.')->withInput();
         }
 
@@ -155,9 +147,10 @@ class OrderController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'discount_code' => 'required|string',
+                'discount_code' => 'required|string|exists:discounts,code',
             ],
             [
+                'discount_code.exists' => 'کد تخفیف نامعتبر است',
                 'discount_code.required' => 'کد تخفیف را وارد کنید',
                 'discount_code.string' => 'کد تخفیف را درست وارد کنید',
             ]
@@ -168,6 +161,7 @@ class OrderController extends Controller
         }
 
         $order = OrderHelper::getActiveOrder();
+
         $discount = Discount::where('code', $request->discount_code)->first();
 
         $result = DiscountHelper::handle($order, $discount);
@@ -197,7 +191,7 @@ class OrderController extends Controller
 
         $validated = CartHelper::validate($cart_items);
 
-        if (!$validated['status']) {
+        if (! $validated['status']) {
             return redirect()->route('shop.cart.index')->with('error', [
                 'message' => 'لطفا سبد خرید را بررسی کنید!',
                 'products' => $validated['products'],
@@ -211,15 +205,12 @@ class OrderController extends Controller
             $pay_amount = 1000;
         }
 
-
-
         $invoice = new Invoice;
         $invoice->amount($pay_amount);
 
         $order_transaction = TransactionHelper::getActiveTransaction($order, $invoice);
 
         $invoice->transactionId($order_transaction->id);
-
 
         $cart_data = $cart_items->map(function ($item) {
             return [
@@ -230,7 +221,6 @@ class OrderController extends Controller
         });
 
         session()->put('checkout_cart', $cart_data);
-
 
         return ShetabitPayment::purchase($invoice, function ($driver, $transactionId) use ($order_transaction) {
             $order_transaction->update([
@@ -250,7 +240,8 @@ class OrderController extends Controller
 
             if ($transaction->status == Transaction::STATUS_VERIFIED) {
                 $status = Transaction::STATUS_UNKNOWN;
-                $message = "این تراکنش قبلا تکمیل شده است";
+                $message = 'این تراکنش قبلا تکمیل شده است';
+
                 return view('user.shop.order-result', compact('status', 'transaction', 'message'));
             }
 
@@ -264,18 +255,16 @@ class OrderController extends Controller
                 try {
                     DB::transaction(function () use ($transaction, &$status, &$message) {
 
-
-                        if (!Auth::check()) {
+                        if (! Auth::check()) {
                             Auth::LoginUsingId($transaction->user_id);
                         }
 
                         $cart_data = session()->get('checkout_cart');
 
-                        if (!$cart_data) {
+                        if (! $cart_data) {
                             $message = 'خطا در دریافت سبد خرید';
-                            throw new \Exception("cart not found in session");
+                            throw new \Exception('cart not found in session');
                         }
-
 
                         // fetch order from database
                         $order = Order::find($transaction->order_id);
@@ -285,17 +274,16 @@ class OrderController extends Controller
                         // check if item is available (qty is not less than the amount in user's cart)
                         foreach ($cart_data as $item) {
 
-
                             $product = Product::lockForUpdate()->find($item['product_id']);
 
-                            if (!$product) {
+                            if (! $product) {
                                 $message = 'خطا در دریافت سبد خرید';
-                                throw new \Exception("invalid product ID: " . $item['product_id']);
+                                throw new \Exception('invalid product ID: '.$item['product_id']);
                             }
 
                             if ($product->qty < $item['qty']) {
                                 $message = 'موجودی یکی از محصولات سبد خرید به اتمام رسیده است';
-                                throw new \Exception("qty more than available for product ID: " . $item['product_id']);
+                                throw new \Exception('qty more than available for product ID: '.$item['product_id']);
                             }
 
                             // safe to deduct qty from stock
@@ -331,7 +319,7 @@ class OrderController extends Controller
                     // Payment failed → nothing is charged
                     $transaction->update([
                         'status' => Transaction::STATUS_FAILED,
-                        'bank_message' => $exception->getMessage()
+                        'bank_message' => $exception->getMessage(),
                     ]);
 
                     $order = Order::find($transaction->order_id);
@@ -345,7 +333,7 @@ class OrderController extends Controller
                     // Error before/after payment verification
                     $transaction->update([
                         'status' => Transaction::STATUS_FAILED,
-                        'bank_message' => $message
+                        'bank_message' => $message,
                     ]);
                     $status = Transaction::STATUS_FAILED;
 

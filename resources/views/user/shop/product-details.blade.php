@@ -53,7 +53,7 @@
                 </div>
                 {{-- slider end --}}
             </div>
-            <div class="col-span-12 lg:col-span-7 xl:col-span-7">
+            <div class="col-span-12 lg:col-span-4 xl:col-span-4">
 
                 <h3
                     class="text-base pt-2 xs:text-lg lg:text-2xl font-bold lg:font-medium line-clamp-2 h-12 xs:h-14 lg:h-16 mt-4 md:mt-0">
@@ -126,6 +126,9 @@
                         </div>
                     @endif
                 </div>
+            </div>
+            <div class="hidden lg:block lg:col-span-3 xl:col-span-3">
+                <x-main.services :display="'vertical'" />
             </div>
         </div>
     </section>

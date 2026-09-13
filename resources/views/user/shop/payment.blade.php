@@ -5,7 +5,7 @@
     </section>
 
     <section class="mt-2 sm:mt-12 max-w-screen-xl mx-auto px-2">
-        <div class="grid grid-cols-12 w-full justify-center gap-4">
+        <div class="grid grid-cols-12 w-full justify-center gap-4 mb-8">
 
             <div
                 class="col-span-12 lg:col-span-7 xl:col-span-8 rounded-box bg-base-100 shadow-md shadow-base-300 py-4 px-2 2xs:px-4">
@@ -67,13 +67,34 @@
             <div class="col-span-12 lg:col-span-5 xl:col-span-4">
 
                 <x-shop.cart-details :method="'js'" :step="3" :discount="$discount" :next_step="['text' => 'پرداخت', 'function' => 'pay()', 'arrow' => false]"
-                    :show="['total_price', 'post_cost', 'payable_amount', 'products_discount', 'real_discount']" :cart_details="$cart_details" />
+                    :show="[
+                        'total_price',
+                        'discount_form',
+                        'post_cost',
+                        'payable_amount',
+                        'products_discount',
+                        'real_discount',
+                    ]" :cart_details="$cart_details" />
 
             </div>
         </div>
 
     </section>
 
+    <div class="bottom-nav sticky absolute p-2 w-full bottom-0 left-0 bg-base-100 border-t-2 border-base-300 sm:hidden">
+        <div class="flex items-center justify-between">
+            <div class="basis-1/2">
+                <button type="button" onclick="pay()" class="btn btn-primary btn-wide">پرداخت</button>
+            </div>
+            <div class="text-left basis-1/2">
+                <div class="text-xs font-medium opacity-75">مبلغ نهایی قابل پرداخت</div>
+                <div class="font-medium mt-2">
+                    <span>{{ number_format($cart_details['payable_amount'] - $cart_details['real_discount'] + $cart_details['post_cost'] + $cart_details['tax_amount']) }}</span>
+                    <span class="text-sm">تومان</span>
+                </div>
+            </div>
+        </div>
+    </div>
     <section class="hidden sm:block max-w-screen-xl mt-2 mx-auto p-2">
         <div class="flex justify-between items-center">
             <a href="{{ route('shop.order.details') }}" class="btn btn-wide">

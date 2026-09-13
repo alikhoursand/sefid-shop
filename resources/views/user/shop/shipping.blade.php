@@ -113,14 +113,7 @@
             </div>
             <div class="col-span-12 lg:col-span-4 ">
                 <x-shop.cart-details :method="'js'" :step="2" :discount="$discount" :next_step="['text' => 'نهایی سازی سفارش', 'function' => 'sendInfo()', 'arrow' => true]"
-                    :show="[
-                        'total_price',
-                        'discount_form',
-                        'post_cost',
-                        'payable_amount',
-                        'products_discount',
-                        'real_discount',
-                    ]" :cart_details="$cart_details" />
+                    :show="['total_price', 'post_cost', 'payable_amount', 'products_discount', 'real_discount']" :cart_details="$cart_details" />
 
             </div>
 
@@ -142,12 +135,12 @@
     <div class="bottom-nav sticky absolute p-2 w-full bottom-0 left-0 bg-base-100 border-t-2 border-base-300 sm:hidden">
         <div class="flex items-center justify-between">
             <div class="basis-1/2">
-                <button type="button" onclick="sendInfo()" class="btn btn-primary btn-wide">ثبت سفارش</button>
+                <button type="button" onclick="sendInfo()" class="btn btn-primary btn-wide">نهایی سازی سفارش</button>
             </div>
             <div class="text-left basis-1/2">
-                <div class="text-xs font-medium opacity-75">جمع سبد خرید</div>
+                <div class="text-xs font-medium opacity-75">مجموع قابل پرداخت</div>
                 <div class="font-medium mt-2">
-                    <span>{{ number_format($cart_details['payable_amount']) }}</span>
+                    <span>{{ number_format($cart_details['payable_amount'] - $cart_details['real_discount'] + $cart_details['post_cost'] + $cart_details['tax_amount']) }}</span>
                     <span class="text-sm">تومان</span>
                 </div>
             </div>
